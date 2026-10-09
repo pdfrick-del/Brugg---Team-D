@@ -22,4 +22,4 @@ Acceptance Criteria:
 1.	The system sorts books alphabetically by author name.
 2.	Books written by the same author are grouped together.
 3.	The sorted author list is displayed within 2 seconds for up to 1,000 books.
-<img width="468" height="618" alt="image" src="https://github.com/user-attachments/assets/50046924-2d0d-4417-af98-e311a5ab2b36" />
+
