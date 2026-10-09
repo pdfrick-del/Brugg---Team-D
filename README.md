@@ -29,3 +29,7 @@ Acceptance Criteria:
 2.	Books written by the same author are grouped together.
 3.	The sorted author list is displayed within 2 seconds for up to 1,000 books.
 
+User Stories to do: 
+membership fees
+genre sorting
+deadlines
