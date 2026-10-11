@@ -37,7 +37,16 @@ In this project a database will be used:
 
 ### Scenario 
 
-User Story 1:
+### User Roles
+
+| Role | Description |
+|---|---|
+|Librarian| |
+|Library user| |
+
+### User Stories 📖
+
+#### User Story 1 - Amreen:
 
 As a librarian, I want to sort books alphabetically by title so that I can quickly find and organize books on the shelves.
 
@@ -46,7 +55,7 @@ Acceptance Criteria:
 2.	Books with the same title are sorted by author name.
 3.	The sorted list is shown to the user without modifying the original book data.
  
-User Story 2:
+#### User Story 2 - Amreen:
 
 As a librarian, I want to sort books by publication year so that I can easily identify newer and older books.
 
@@ -55,7 +64,7 @@ Acceptance Criteria:
 2.	The system allows sorting books in descending order by publication year.
 3.	The sorted results correctly display the publication year for each book.
  
-User Story 3:
+#### User Story 3 - Amreen:
 
 As a library user, I want to sort books by author name so that I can find all books written by a specific author more easily.
 
@@ -64,7 +73,28 @@ Acceptance Criteria:
 2.	Books written by the same author are grouped together.
 3.	The sorted author list is displayed within 2 seconds for up to 1,000 books.
 
-User Stories to do: 
-membership fees
-genre sorting
-deadlines
+#### User Story 4 - Patrick:
+
+As a libary user, I want to see my membership fees.
+
+Acceptance Criteria:
+1. The system remembers when I last paid my fees.
+2. It shows when the next date is to pay my fees.
+3. Based on how long I am a member, I get an individual discount on my fees.
+
+#### User Story 5 - Patrick:
+
+As a library user, I want to sort books by genre so that I can find books around the topics I am interested in.
+
+Acceptance Criteria:
+1. The system sorts books themed by genre.
+2. Books in the same genre are grouped together
+3. The system only displays the requested genre.
+
+#### User Story 6 - Patrick:
+As a library user, I want to see until when I have to bring my books back via deadlines.
+
+Acceptance Criteria:
+1. The system displays which books are currently lent by the user.
+2. The system sorts them by deadline, from the earliest deadlines to the latest.
+3. If a deadline is missed, the system gives the user a warning.
