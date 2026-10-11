@@ -1,6 +1,41 @@
-# Brugg---Team-D
+# Brugg - Team - D - Library Book Sorting System 📚
 
-Python: Library Book Sorting System
+## Authors 👥
+
+- Amreen Anis Ahmed Khan: amreenanisahmed.khan@students.fhnw.ch
+- Patrick Frick: patrick.frick@students.fhnw.ch
+
+## Project Objectives According to Template 📄
+
+This project is intended to:
+
+- Practice the complete process from problem analysis to implementation
+- Apply basic Python programming concepts learned in the Programming Foundations module
+- Demonstrate the use of console interaction, data validation, and file processing
+- Produce clean, well-structured, and documented code
+- Prepare students for teamwork and documentation in later modules
+
+## Statement of Integrity 📜
+
+We hereby declare
+
+- To clearly document the use of generative AI
+- To divide the work fairly and contribute equally to the project
+- Cite external sources when necessary
+
+## Information About the Database 💾
+
+In this project a database will be used:
+
+- This database is fictive
+- It was created with ChatGPT
+-  It is considered a tool to demonstrate our program
+
+## Analysis 📝 
+
+### Problem
+
+### Scenario 
 
 User Story 1:
 
