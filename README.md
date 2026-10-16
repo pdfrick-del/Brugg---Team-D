@@ -31,6 +31,12 @@ In this project a database will be used:
 - It was created with ChatGPT
 -  It is considered a tool to demonstrate our program
 
+## Tools and Programming Languages 🛠️
+
+- Python
+- Git and Github
+- Mermaid
+
 ## Analysis 📝 
 
 ### Problem
