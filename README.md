@@ -110,8 +110,8 @@ Acceptance Criteria:
 
 ### Decision and Control Flow Logic
 
-We used Mermaid to create a flowchart for our decision and control flow logic and used ChatGPT to help us learn the commands in Mermaid. We uploaded a Cheatsheet ChatGPT created for us to use Mermaid.
+We used Mermaid to create a flowchart for our decision and control flow logic and used ChatGPT to help us learn the commands in Mermaid. We uploaded a Cheatsheet ChatGPT created for us to use Mermaid: Mermaid Cheat Sheet.md
 
-The flowchart can be viewed in the text file: Flowchart.md.
+The flowchart can be viewed in the file: Flowchart.md.
 
 
