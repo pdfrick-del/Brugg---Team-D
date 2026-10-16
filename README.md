@@ -36,6 +36,7 @@ In this project a database will be used:
 - Python
 - Git and Github
 - Mermaid
+- ChatGPT
 
 ## Analysis 📝 
 
@@ -104,3 +105,13 @@ Acceptance Criteria:
 1. The system displays which books are currently lent by the user.
 2. The system sorts them by deadline, from the earliest deadlines to the latest.
 3. If a deadline is missed, the system gives the user a warning.
+
+## Program Structure 🏛️
+
+### Decision and Control Flow Logic
+
+We used Mermaid to create a flowchart for our decision and control flow logic and used ChatGPT to help us learn the commands in Mermaid. We uploaded a Cheatsheet ChatGPT created for us to use Mermaid.
+
+The flowchart can be viewed in the text file: Flowchart.md.
+
+
