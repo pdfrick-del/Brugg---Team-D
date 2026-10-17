@@ -73,7 +73,7 @@ Acceptance Criteria:
  
 #### User Story 3 - Amreen:
 
-As a library user, I want to sort books by author name so that I can find all books written by a specific author more easily.
+As a librarian, I want to sort books by author name so that I can find all books written by a specific author more easily.
 
 Acceptance Criteria:
 1.	The system sorts books alphabetically by author name.
