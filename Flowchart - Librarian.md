@@ -1,8 +1,8 @@
 
 ```mermaid
-flowchart TD
+flowchart TB
     A["Start"] -- <br> --> B["Enter Username and Password"]
-    B --> C(("Login"))
+    B --> C["Login"]
     C --> n1["User Authentication"]
     n1 -- Yes --> D["Login Successful"]
     n1 -- No --> F["Login Unsuccessful"]
@@ -11,6 +11,7 @@ flowchart TD
 
     A@{ shape: rounded}
     B@{ shape: lean-r}
+    C@{ shape: rect}
     n1@{ shape: diam}
      B:::Sky
     classDef Sky stroke-width:1px, stroke-dasharray:none, stroke:#374D7C, fill:#E2EBFF, color:#374D7C
