@@ -1,1 +1,30 @@
+librarians = {
+    "ecarter": "Lib@123",
+    "dbrooks": "Lib@234",
+    "sreed": "Lib@345",
+    "mturner": "Lib@456",
+    "oparker": "Lib@567"
+}
 
+users = {
+    "ljohnson": "User@101",
+    "nwilson": "User@102",
+    "athomas": "User@103",
+    "iwhite": "User@104",
+    "eharris": "User@105",
+    "mlewis": "User@106",
+    "lmartin": "User@107",
+    "cking": "User@108",
+    "bscott": "User@109",
+    "agreen": "User@110",
+    "jhall": "User@111",
+    "hadams": "User@112",
+    "hbaker": "User@113",
+    "enelson": "User@114",
+    "ayoung": "User@115",
+    "eroberts": "User@116",
+    "wclark": "User@117",
+    "gwalker": "User@118",
+    "sevans": "User@119",
+    "cwright": "User@120"
+}
