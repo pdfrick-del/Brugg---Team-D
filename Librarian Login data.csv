@@ -1,0 +1,6 @@
+LibrarianID,Name,Username,Password,Role
+LIB001,Emma Carter,ecarter,Lib@123,Head Librarian
+LIB002,Daniel Brooks,dbrooks,Lib@234,Catalog Librarian
+LIB003,Sophia Reed,sreed,Lib@345,Reference Librarian
+LIB004,Michael Turner,mturner,Lib@456,Digital Resources Librarian
+LIB005,Olivia Parker,oparker,Lib@567,Circulation Librarian
