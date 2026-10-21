@@ -1,6 +1,6 @@
 ```mermaid
 
-flowchart TD
+flowchart LR
 
 1.1([Start])
 1.1 --> 2.1
