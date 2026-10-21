@@ -4,6 +4,6 @@ flowchart TD
 
 A([Start])
 A --> B     
-A[/Ask for user type/]
-A -->|library user| B
-A -->|librarian| c
+B[/Ask for user type/]
+B -->|library user| C
+B -->|librarian| D
