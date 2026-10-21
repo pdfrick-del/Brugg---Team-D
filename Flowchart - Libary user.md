@@ -17,4 +17,4 @@ flowchart TB
 3.2 -->|Yes| 3.3{Choose Option}
 3.3 -->|Fees| 4.1[\Show Fees\]
 3.3 -->|Deadlines| 5.1[\Show Deadlines\]
-3.3 -->|Books| 6.1[\Show Books\]
+3.3 -->|Books| 6.1[/Type in Book/]
