@@ -7,9 +7,9 @@ flowchart TB
 2.1{Ask for user type}
 2.1 -->|librarian| 2.2([Different path])
 2.1 -->|library user| 3.0[/Do you have a username?/]
-3.0 -->|No| 3.5[/Type in new username/]
-3.5 -->3.6[\Shows new ID\] --> 3.1[/Type in username and ID/]
-3.0 -->|YES| 3.1[/Type in username and ID/]
+3.0 -->|No| 3.5[/Type in new username and password/]
+3.5 --> 3.1[/Type in username and password/]
+3.0 -->|YES| 3.1[/Type in username and password/]
 3.1 --> 3.2
 3.2{Username exists?}
 3.2 -->|No| 3.4[\Error\]
@@ -17,4 +17,4 @@ flowchart TB
 3.2 -->|Yes| 3.3{Choose Option}
 3.3 -->|Fees| 4.1[\Show Fees\]
 3.3 -->|Deadlines| 5.1[\Show Deadlines\]
-3.3 -->|Books| 6.1[\Show Books\]
+3.3 -->|Books| 6.1[/Type in Book/]
