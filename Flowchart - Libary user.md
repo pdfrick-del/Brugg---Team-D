@@ -9,7 +9,7 @@ flowchart TD
 2.1 -->|library user| 3.1[/Type in username/]
 3.1 --> 3.2
 3.2{Username exists?}
-3.2 -->|No| 3.4[\Error\]
+3.2 -->|No| 3.1[\Error\]
 3.4 --> 1.1
 3.2 -->|Yes| 3.3{Choose Option}
 3.3 -->|Fees| 4.1[\Show Fees\]
