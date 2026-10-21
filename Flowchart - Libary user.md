@@ -6,11 +6,14 @@ flowchart LR
 1.1 --> 2.1
 2.1{Ask for user type}
 2.1 -->|librarian| 2.2([Different path])
-2.1 -->|library user| 3.1[/Type in username/]
+2.1 -->|library user| 3.0[/Do you have a username?/]
+3.0 -->|No| 3.5[/Type in new username/]
+3.5 -->3.4[\Shows new ID\]
+3.0 -->|YES| 3.1[/Type in username and ID/]
 3.1 --> 3.2
 3.2{Username exists?}
 3.2 -->|No| 3.4[\Error\]
-3.4 -->3.1
+3.4 -->3.0
 3.2 -->|Yes| 3.3{Choose Option}
 3.3 -->|Fees| 4.1[\Show Fees\]
 3.3 -->|Deadlines| 5.1[\Show Deadlines\]
