@@ -2,8 +2,9 @@
 
 flowchart TD
 
-A([Start])
-A --> B
-B{Ask for user type}
-B -->|library user| C{Type in username}
-B -->|librarian| D([Different path])
+1.1([Start])
+1.1 --> B
+2.1{Ask for user type}
+2.1 -->|librarian| 2.2([Different path])
+2.1 -->|library user| 3.1[/Type in username/]  
+3.2{Check username.py}
