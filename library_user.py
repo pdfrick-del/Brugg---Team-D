@@ -8,6 +8,8 @@ choice = " "
 
 while choice != "1" and choice != "2":
   choice = input("Choose 1 or 2: ")
+  if choice != "1" and choice != "2":
+    print("Error; return to choice")
 
 if choice == "1":
   user_name = input("Enter username: ")
@@ -16,7 +18,3 @@ if choice == "1":
 elif choice == "2":
   new_user_name = input("Enter new username: ")
   new_password = input("Enter new password: ")
-
-else:
-  print("Error; return to choice")
-  
