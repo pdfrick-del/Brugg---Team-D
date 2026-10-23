@@ -1,5 +1,11 @@
-New Userstories;
+General Userstories:
+- Login: for both user types. Choose user login type. Account and Password: Creating a new user account, and the program remembers it. The new account option is only for library users.
+- Sorting Books by genre, author, abc and year.
 
-- Login:
-- Account and Password: Creating a new user account, and the program remembers it.
-- Adding new books and requesting new books
+Libary Userstories:
+- Requesting new books
+- fees
+- deadlines
+
+Libarian Userstories:
+- Adding new books and removing old books
