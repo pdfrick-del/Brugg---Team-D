@@ -12,12 +12,12 @@ Libarian Userstories:
 
 Proposal:
 To Do's for 30.10.2026:
-- Revision of the user stories 
-- Creating a functioning sorting system 
-- Creating a functioning login system
+- Revision of the user stories and flowcharts
+- Creating a functioning sorting system (sorting.py)
+- Creating a functioning login system (main.py, libary_user.py and libarian.py)
 
 Additional To Do's:
-- Doing fees and deadlines
-- Requesting new books
-- Adding and removing books
+- Doing fees and deadlines (libary_user.py)
+- Requesting new books (libary_user.py)
+- Adding and removing books (libarian.py)
 
