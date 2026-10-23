@@ -9,3 +9,15 @@ Libary Userstories:
 
 Libarian Userstories:
 - Adding new books and removing old books
+
+Proposal:
+To Do's for 30.10.2026:
+-Revision of the user stories 
+-creating a functioning sorting system 
+-creating a functioning login system
+
+Additional To Do's:
+-doing fees and deadlines
+-requesting new books
+-adding and removing books
+
