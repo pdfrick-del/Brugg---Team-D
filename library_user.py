@@ -1,6 +1,8 @@
-#---User Login---
+import csv
+import getpass
 
-print("Do you have an library user account?")
+#---Libary User Login---
+print("Do you have a library user account?")
 print("1. YES")
 print("2. NO")
 
@@ -18,3 +20,4 @@ if choice == "1":
 elif choice == "2":
   new_user_name = input("Enter new username: ")
   new_password = input("Enter new password: ")
+  
