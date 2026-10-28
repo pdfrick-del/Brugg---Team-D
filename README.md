@@ -188,7 +188,50 @@ Given the librarian initiates a book issue transaction
 When the Member ID or Book ISBN does not exist
 Then the system rejects the transaction and displays one of the following messages:Member not found or Book not found.
  
-#### User Story 4 - Patrick:
+### User Story 4: Library User Login and Account Information - Patrick:
+
+As a library user, I want to select my user role and log in to my account so that I can access the system's features for a library user and view personal information.
+
+#### AC1: Selecting the Library User role
+Given the program has started.
+When the user selects “Library User” as a user role.
+Then the system starts the login process required for the selected user role.
+
+#### AC2: Creating a new account
+Given a library user doesn't have an account yet.
+When the library user starts the login process. 
+Then the system offers the option to create a new account and allows the user to enter their required username, email address, password, and payment information. If all required information is valid, the system creates and saves the new account.
+
+#### AC3: Entering login credentials
+Given a library user has an account.
+When the library user starts the login process. 
+Then the system offers the option to log in so the user can type in their e-mail and password.
+
+#### AC4: Verification of login credentials
+Given a library user is entering their login credentials to log in.
+When the library user has submitted their e-mail and password.
+Then the system verifies these credentials; if correct, the user is logged in, else he gets an error message and gets back to the start of the login for the library user, where he can choose between logging in and creating an account.
+
+#### AC5: Showing Options
+Given a library user is successfully logged in.
+Then the system displays a menu with the following options: viewing account information, viewing fees, and searching for books to download. 
+
+#### AC6: View and edit account information
+Given a library user is successfully logged in.
+When the library user decides on the option “view account”.
+Then the system shows them their username, email, and saved payment information. The user can decide to edit this information and save it.
+
+#### AC7: Changing password
+Given a library user is logged in or in the login process.
+When they decide to change their password in their account information or select the option “password forgotten” in the login process.
+Then they receive a verification code via e-mail; If the correct verification code is entered, the user can set and save a new password.
+
+### User Story 5: Login librarian - Patrick:
+
+As a librarian I want to select my user role and log in to my account so that I can access the system's features for a librarian.
+
+
+### User Story 6 - Patrick:
 
 As a libary user, I want to see my membership fees.
 
@@ -197,16 +240,7 @@ Acceptance Criteria:
 2. It shows when the next date is to pay my fees.
 3. Based on how long I am a member, I get an individual discount on my fees.
 
-#### User Story 5 - Patrick:
-
-As a library user, I want to sort books by genre so that I can find books around the topics I am interested in.
-
-Acceptance Criteria:
-1. The system sorts books themed by genre.
-2. Books in the same genre are grouped together
-3. The system only displays the requested genre.
-
-#### User Story 6 - Patrick:
+### User Story 7 - Patrick:
 As a library user, I want to see until when I have to bring my books back via deadlines.
 
 Acceptance Criteria:
