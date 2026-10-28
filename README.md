@@ -250,14 +250,34 @@ As a librarian, I want to select my user role and log in to my account so that I
 - When the librarian has submitted their ID and password.
 - Then the system verifies these credentials; if correct, the user is logged in, else they get an error message and get back to the start of the login for the librarian.
 
-### User Story 6 membership fees - Patrick:
+### User Story 6: Membership Fees - Patrick:
 
-As a libary user, I want to see my membership fees.
+As a library user, I want to view my membership fees so that I know which I have paid lately and which are still outstanding.
 
-Acceptance Criteria:
-1. The system remembers when I last paid my fees.
-2. It shows when the next date is to pay my fees.
-3. Based on how long I am a member, I get an individual discount on my fees.
+#### AC1: Viewing membership fees
+Given a library user is logged in.
+When he chooses the option "membership fees".
+Then the system shows him the last three fees that were paid and displays the outstanding and upcoming fees as they are due.
+
+#### AC2: Notification option
+Given a library user has opened the option "membership fees".
+When they decide on the option "notifications" within.
+Then the system gives them the option to activate notifications via e-mail when a fee is outstanding.
+
+#### AC3: Sending Notifications
+Given a library user has activated notifications for membership fees.
+When the program starts and detects an overdue unpaid membership fee for that user.
+Then the system sends a reminder e-mail to the user.
+
+### AC4: Late fees
+Given a library user has an unpaid overdue fee.
+When the program starts and detects that the fee has been overdue for at least 30 days.
+Then the system adds a late fee to that membership fee,  if one has not already been added, which will also be displayed with the other fees.
+
+### AC5: Discounts
+Given a library user has an account with a recorded creation date.
+When the program starts and detects that a library user has an account for at least 5 years.
+Then the system applies a discount to all upcoming membership fees, ensuring that each fee receives the discount only once.
 
 ### User Story 7 requesting books - Patrick:
 
