@@ -198,23 +198,23 @@ When the user selects “Library User” as a user role.
 Then the system starts the login process required for the selected user role.
 
 #### AC2: Creating a new account
-Given a library user doesn't have an account yet.
-When the library user starts the login process. 
-Then the system offers the option to create a new account and allows the user to enter their required username, email address, password, and payment information. If all required information is valid, the system creates and saves the new account.
+Given a library user is in the login process.
+When they select the option to create a new account.
+Then the system allows the user to enter their required username, email address, password, and payment information. If all required information is valid, the system creates and saves the new account.
 
 #### AC3: Entering login credentials
-Given a library user has an account.
-When the library user starts the login process. 
-Then the system offers the option to log in so the user can type in their e-mail and password.
+Given a library user is in the login process.
+When they select the option to log in.
+Then the system allows them to type in their e-mail and password.
 
 #### AC4: Verification of login credentials
 Given a library user is entering their login credentials to log in.
 When the library user has submitted their e-mail and password.
-Then the system verifies these credentials; if correct, the user is logged in, else he gets an error message and gets back to the start of the login for the library user, where he can choose between logging in and creating an account.
+Then the system verifies these credentials; if correct, the user is logged in, else they get an error message and get back to the start of the login for the library user, where they can choose between logging in and creating an account.
 
 #### AC5: Showing Options
 Given a library user is successfully logged in.
-Then the system displays a menu with the following options: viewing account information, viewing fees, and searching for books to download. 
+Then the system displays a menu with the following options: viewing account information, viewing fees, searching for books to download, and requesting books. 
 
 #### AC6: View and edit account information
 Given a library user is successfully logged in.
@@ -228,10 +228,29 @@ Then they receive a verification code via e-mail; If the correct verification co
 
 ### User Story 5: Login librarian - Patrick:
 
-As a librarian I want to select my user role and log in to my account so that I can access the system's features for a librarian.
+As a librarian, I want to select my user role and log in to my account so that I can access the system's features for a librarian.
 
+#### AC1: Selecting the librarian role
+Given the program has started.
+When the user selects “Librarian” as a user role.
+Then the system starts the login process required for the selected user role.
 
-### User Story 6 - Patrick:
+#### AC2: Forgotten account information or new account
+Given a librarian is in the login process
+When they select "Forgot your account information or don't have an account?"
+Then the system displays the message: “Please contact your admin."
+
+#### AC3: Entering login credentials
+Given a librarian is in the login process
+When they select "log in"
+Then the system allows them to enter their ID and password.
+
+#### AC4: Verification of login credentials 
+Given a librarian is entering their login credentials to log in. 
+When the librarian has submitted their ID and password. 
+Then the system verifies these credentials; if correct, the user is logged in, else they get an error message and get back to the start of the login for the librarian.
+
+### User Story 6 membership fees - Patrick:
 
 As a libary user, I want to see my membership fees.
 
@@ -240,13 +259,8 @@ Acceptance Criteria:
 2. It shows when the next date is to pay my fees.
 3. Based on how long I am a member, I get an individual discount on my fees.
 
-### User Story 7 - Patrick:
-As a library user, I want to see until when I have to bring my books back via deadlines.
+### User Story 7 requesting books - Patrick:
 
-Acceptance Criteria:
-1. The system displays which books are currently lent by the user.
-2. The system sorts them by deadline, from the earliest deadlines to the latest.
-3. If a deadline is missed, the system gives the user a warning.
 
 ## Program Structure 🏛️
 
