@@ -193,62 +193,62 @@ Then the system rejects the transaction and displays one of the following messag
 As a library user, I want to select my user role and log in to my account so that I can access the system's features for a library user and view personal information.
 
 #### AC1: Selecting the Library User role
-Given the program has started.
-When the user selects “Library User” as a user role.
-Then the system starts the login process required for the selected user role.
+- Given the program has started.
+- When the user selects “Library User” as a user role.
+- Then the system starts the login process required for the selected user role.
 
 #### AC2: Creating a new account
-Given a library user is in the login process.
-When they select the option to create a new account.
-Then the system allows the user to enter their required username, email address, password, and payment information. If all required information is valid, the system creates and saves the new account.
+- Given a library user is in the login process.
+- When they select the option to create a new account.
+- Then the system allows the user to enter their required username, email address, password, and payment information. If all required information is valid, the system creates and saves the new account.
 
 #### AC3: Entering login credentials
-Given a library user is in the login process.
-When they select the option to log in.
-Then the system allows them to type in their e-mail and password.
+- Given a library user is in the login process.
+- When they select the option to log in.
+- Then the system allows them to type in their e-mail and password.
 
 #### AC4: Verification of login credentials
-Given a library user is entering their login credentials to log in.
-When the library user has submitted their e-mail and password.
-Then the system verifies these credentials; if correct, the user is logged in, else they get an error message and get back to the start of the login for the library user, where they can choose between logging in and creating an account.
+- Given a library user is entering their login credentials to log in.
+- When the library user has submitted their e-mail and password.
+- Then the system verifies these credentials; if correct, the user is logged in, else they get an error message and get back to the start of the login for the library user, where they can choose between logging in and creating an account.
 
 #### AC5: Showing Options
-Given a library user is successfully logged in.
-Then the system displays a menu with the following options: viewing account information, viewing fees, searching for books to download, and requesting books. 
+- Given a library user is successfully logged in.
+- Then the system displays a menu with the following options: viewing account information, viewing fees, searching for books to download, and requesting books. 
 
 #### AC6: View and edit account information
-Given a library user is successfully logged in.
-When the library user decides on the option “view account”.
-Then the system shows them their username, email, and saved payment information. The user can decide to edit this information and save it.
+- Given a library user is successfully logged in.
+- When the library user decides on the option “view account”.
+- Then the system shows them their username, email, and saved payment information. The user can decide to edit this information and save it.
 
 #### AC7: Changing password
-Given a library user is logged in or in the login process.
-When they decide to change their password in their account information or select the option “password forgotten” in the login process.
-Then they receive a verification code via e-mail; If the correct verification code is entered, the user can set and save a new password.
+- Given a library user is logged in or in the login process.
+- When they decide to change their password in their account information or select the option “password forgotten” in the login process.
+- Then they receive a verification code via e-mail; If the correct verification code is entered, the user can set and save a new password.
 
 ### User Story 5: Login librarian - Patrick:
 
 As a librarian, I want to select my user role and log in to my account so that I can access the system's features for a librarian.
 
 #### AC1: Selecting the librarian role
-Given the program has started.
-When the user selects “Librarian” as a user role.
-Then the system starts the login process required for the selected user role.
+- Given the program has started.
+- When the user selects “Librarian” as a user role.
+- Then the system starts the login process required for the selected user role.
 
 #### AC2: Forgotten account information or new account
-Given a librarian is in the login process
-When they select "Forgot your account information or don't have an account?"
-Then the system displays the message: “Please contact your admin."
+- Given a librarian is in the login process
+- When they select "Forgot your account information or don't have an account?"
+- Then the system displays the message: “Please contact your admin."
 
 #### AC3: Entering login credentials
-Given a librarian is in the login process
-When they select "log in"
-Then the system allows them to enter their ID and password.
+- Given a librarian is in the login process
+- When they select "log in"
+- Then the system allows them to enter their ID and password.
 
 #### AC4: Verification of login credentials 
-Given a librarian is entering their login credentials to log in.
-When the librarian has submitted their ID and password.
-Then the system verifies these credentials; if correct, the user is logged in, else they get an error message and get back to the start of the login for the librarian.
+- Given a librarian is entering their login credentials to log in.
+- When the librarian has submitted their ID and password.
+- Then the system verifies these credentials; if correct, the user is logged in, else they get an error message and get back to the start of the login for the librarian.
 
 ### User Story 6 membership fees - Patrick:
 
