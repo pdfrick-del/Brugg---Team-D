@@ -1,4 +1,4 @@
-UserID,Name,Username,Password,Role,Email,Payment_Options
+UserID,Name,Username,Password,Role,Email,Payment_Options,Phone_Number,Card_Number
 U001,Liam Johnson,ljohnson,User@101,Library User
 U002,Noah Wilson,nwilson,User@102,Library User
 U003,Ava Thomas,athomas,User@103,Library User
