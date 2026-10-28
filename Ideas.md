@@ -5,7 +5,6 @@ General Userstories:
 Libary Userstories:
 - Requesting new books
 - fees
-- deadlines
 
 Libarian Userstories:
 - Adding new books
