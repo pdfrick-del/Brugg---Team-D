@@ -101,7 +101,7 @@ Given no books exist in the catalog
 When the librarian requests filtering or sorting
 Then the system displays the message:No books available
  
-### User Story 2: Manage Books
+### User Story 2: Manage Books- Amreen 
 As a librarian, I want to add, update, and delete book records so that the library catalog remains accurate, up-to-date, and available for members to search, borrow, and return books.
 ### Feature A: Add Book
 ### AC1: Add a New Book
@@ -156,7 +156,7 @@ Given a book has been deleted successfully
 When the librarian views the catalog
 Then the deleted book is no longer displayed in the catalog.
  
-### User Story 3: Issue Books to Members
+### User Story 3: Issue Books to Members- Amreen 
 As a librarian, I want to issue books to registered members so that borrowing transactions are recorded accurately and members do not exceed the maximum borrowing limit of five books.
 ### Feature: Issue Book
 ### AC1: Member Must Exist
