@@ -246,8 +246,8 @@ When they select "log in"
 Then the system allows them to enter their ID and password.
 
 #### AC4: Verification of login credentials 
-Given a librarian is entering their login credentials to log in. 
-When the librarian has submitted their ID and password. 
+Given a librarian is entering their login credentials to log in.
+When the librarian has submitted their ID and password.
 Then the system verifies these credentials; if correct, the user is logged in, else they get an error message and get back to the start of the login for the librarian.
 
 ### User Story 6 membership fees - Patrick:
