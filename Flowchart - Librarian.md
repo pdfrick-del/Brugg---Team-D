@@ -5,7 +5,7 @@
 ```mermaid
 flowchart TD
 
-Start([Start]) --> A{Books Available?}
+Start([Start]) --> A{Books Available}
 
 A -->|No| B[Display No Books Available]
 B --> End([End])
@@ -17,7 +17,7 @@ C --> E[Filter by Author]
 C --> F[Filter by Publication Year]
 C --> G[Filter by Genre]
 
-D --> H{Books Found?}
+D --> H{Books Found}
 E --> H
 F --> H
 G --> H
@@ -27,7 +27,7 @@ I --> End
 
 H -->|Yes| J[Display Filtered Books]
 
-J --> K{Apply Sorting?}
+J --> K{Apply Sorting}
 
 K -->|No| End
 
@@ -55,12 +55,12 @@ Start([Start]) --> A{Select Action}
 
 A -->|Add Book| B[Enter Book Details]
 
-B --> C{All Required Fields Filled?}
+B --> C{All Required Fields Filled}
 
 C -->|No| D[Display Field Empty Error]
 D --> End([End])
 
-C -->|Yes| E{ISBN Exists?}
+C -->|Yes| E{ISBN Exists}
 
 E -->|Yes| F[Display ISBN Already Exists]
 F --> End
@@ -71,7 +71,7 @@ H --> End
 
 A -->|Update Book| I[Search Book]
 
-I --> J{Book Found?}
+I --> J{Book Found}
 
 J -->|No| K[Display Book Not Found]
 K --> End
@@ -82,7 +82,7 @@ M --> End
 
 A -->|Delete Book| N[Search Book]
 
-N --> O{Book Found?}
+N --> O{Book Found}
 
 O -->|No| P[Display Book Not Found]
 P --> End
@@ -104,19 +104,19 @@ flowchart TD
 
 Start([Start]) --> A[Enter Member ID]
 
-A --> B{Member Exists?}
+A --> B{Member Exists}
 
 B -->|No| C[Display Member Not Found]
 C --> End([End])
 
 B -->|Yes| D[Enter Book ISBN]
 
-D --> E{Book Exists?}
+D --> E{Book Exists}
 
 E -->|No| F[Display Book Not Found]
 F --> End
 
-E -->|Yes| G{Active Loans < 5 ?}
+E -->|Yes| G{Active Loans < 5 }
 
 G -->|No| H[Display Maximum Borrowing Limit Reached]
 H --> End
