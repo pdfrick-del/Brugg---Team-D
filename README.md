@@ -269,12 +269,12 @@ Given a library user has activated notifications for membership fees.
 When the program starts and detects an overdue unpaid membership fee for that user.
 Then the system sends a reminder e-mail to the user.
 
-### AC4: Late fees
+#### AC4: Late fees
 Given a library user has an unpaid overdue fee.
 When the program starts and detects that the fee has been overdue for at least 30 days.
 Then the system adds a late fee to that membership fee,  if one has not already been added, which will also be displayed with the other fees.
 
-### AC5: Discounts
+#### AC5: Discounts
 Given a library user has an account with a recorded creation date.
 When the program starts and detects that a library user has an account for at least 5 years.
 Then the system applies a discount to all upcoming membership fees, ensuring that each fee receives the discount only once.
