@@ -125,7 +125,7 @@ Then the system rejects the request and displays the message:ISBN already exists
 Given valid book information is provided
 When the book is successfully saved
 Then the system displays the message:Book added successfully and the book appears in the catalog.
-Feature B: Update Book
+#### Feature A: Update Book
 #### AC5: Update Existing Book Details
 Given a book exists in the catalog
 When the librarian selects the book and updates one or more of the following fields:
