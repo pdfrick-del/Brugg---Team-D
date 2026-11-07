@@ -58,7 +58,7 @@ while True:
     new_password = ""
 
     while True:
-      new_password = getpass.getpass("Enter new password: ", echo_char="*")
+      new_password = getpass.getpass("Enter new password. Please make sure that the password is at least 8 characters long and does not contain any spaces.: ", echo_char="*")
 
       if new_password == "" or len(new_password) < 8 or " " in new_password:
         print("The password does not meet the requirements.")
@@ -72,7 +72,8 @@ while True:
     while True:
       new_email = input("Enter your E-Mail: ").strip().lower()
 
-      if new_email == "":
+      if new_email == "" or "@" not in new_email or "." not in new_email:
+        print("Invalid email address. Please try again.")
         continue
 
       with open("Projekt/Brugg---Team-D/Library_User_Login_data.csv", "r", newline="", encoding="utf-8") as file:
@@ -116,7 +117,13 @@ while True:
       new_number = highest_id + 1
       new_user_id = f"U{new_number:03d}"
 
+      with open("Projekt/Brugg---Team-D/Library_User_Login_data.csv", "r", newline="", encoding="utf-8") as file:
+        text = file.read()
+
       with open("Projekt/Brugg---Team-D/Library_User_Login_data.csv", "a", newline="", encoding="utf-8") as file:
+        if not text.endswith("\n") and text != "":
+          file.write("\n")
+
         writer = csv.DictWriter(file, fieldnames=reader.fieldnames)
         writer.writerow({
           "UserID": new_user_id,
