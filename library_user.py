@@ -15,8 +15,26 @@ while True:
       print("Error; return to choice")
 
   if choice == "1":
-    user_name = input("Enter username: ")
-    password = input ("Enter password: ")
+    email = input("Enter email: ").strip().lower()
+    password = getpass.getpass("Enter password: ", echo_char="*")
+
+    with open("Projekt/Brugg---Team-D/Library_User_Login_data.csv", "r", newline="", encoding="utf-8") as file:
+      reader = csv.DictReader(file)
+      users = list(reader)
+
+      logged_in = False
+
+      for user in users:
+        if email == user["Email"] and password == user["Password"]:
+          print("Welcome", user["Username"])
+          logged_in = True
+          break
+
+      else:
+        print("Incorrect login credentials; return to choice")
+
+      if logged_in:  
+        break
 
   elif choice == "2":
 
