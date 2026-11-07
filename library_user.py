@@ -154,3 +154,25 @@ while True:
         })
 
       print("Your account has been created; return to Log in.")
+
+#---Menu---
+while True:
+  if logged_in == True:
+    print("What do you want to do", user["Username"], "?")
+    #---Placeholder Options---
+    print("1. viewing account information")
+    print("2. viewing fees")
+    print("3. searching books")
+    print("4. requesting books")
+    print("5. Log out")
+
+    choice_options = " "
+      
+    while choice_options != "1" and choice_options != "2" and choice_options != "3" and choice_options != "4" and choice_options != "5":
+      choice_options = input("Choose 1, 2, 3, 4 or 5: ")
+      if choice_options != "1" and choice_options != "2" and choice_options != "3" and choice_options != "4" and choice_options != "5":
+        print("Error; return to options")
+
+    #---Placeholder Options---
+    if choice_options == "2" or choice_options == "3" or choice_options == "4":
+      break
