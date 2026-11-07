@@ -19,10 +19,76 @@ while True:
     password = input ("Enter password: ")
 
   elif choice == "2":
-    new_name = input("Enter your first name and last name: ")
-    new_user_name = input("Enter new username: ")
-    new_password = getpass.getpass("Enter new password: ", echo_char="*")
-    new_email = input("Enter your E-Mail: ")
+
+    new_name = ""
+    
+    while True:
+      new_name = input("Enter your first name and last name: ").strip().title()
+
+      if new_name == "":
+        continue
+
+      else:
+        break
+
+    print("Choose your new user name")
+
+    new_user_name =""
+
+    while True:
+        new_user_name = input("Enter new username: ").strip().lower()
+        
+        if new_user_name == "":
+          continue
+
+        with open("Projekt/Brugg---Team-D/Library_User_Login_data.csv", "r", newline="", encoding="utf-8") as file:
+          reader = csv.DictReader(file)
+          users = list(reader)
+
+        for user in users:
+          if new_user_name == user["Username"]:
+            print("Username already exists")
+            print("Error; return to new user name")
+            break
+        
+        else:
+          print("Username is available")
+          break
+
+    new_password = ""
+
+    while True:
+      new_password = getpass.getpass("Enter new password: ", echo_char="*")
+
+      if new_password == "" or len(new_password) < 8 or " " in new_password:
+        print("The password does not meet the requirements.")
+        continue
+
+      else:
+        break
+
+    new_email = ""
+
+    while True:
+      new_email = input("Enter your E-Mail: ").strip().lower()
+
+      if new_email == "":
+        continue
+
+      with open("Projekt/Brugg---Team-D/Library_User_Login_data.csv", "r", newline="", encoding="utf-8") as file:
+        reader = csv.DictReader(file)
+        users = list(reader)
+
+      for user in users:
+        if new_email == user["Email"]:
+          print("Email already exists")
+          print("Error; return to new email")
+          break
+
+      else:
+        print("Email is available")
+        break    
+    
     print("Choose your payment option.")
     print("TWINT")
     print("Bank Card")
