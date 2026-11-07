@@ -173,6 +173,19 @@ while True:
       if choice_options != "1" and choice_options != "2" and choice_options != "3" and choice_options != "4" and choice_options != "5":
         print("Error; return to options")
 
+    if choice_options == "1":
+      print("User ID:", user["UserID"])
+      print("Name:", user["Name"])
+      print("Username:", user["Username"])
+      print("Password:", "*" * len(user["Password"]))
+      print("Role:", user["Role"])
+      print("Email:", user["Email"])
+      print("Payment Options:", user["Payment_Options"])
+
     #---Placeholder Options---
     if choice_options == "2" or choice_options == "3" or choice_options == "4":
+      break
+
+    if choice_options == "5":
+      print("logging out; return to choice")
       break
