@@ -219,6 +219,42 @@ while True:
               
                 save_users(users)
 
+              if choice_edit == "2":
+                users = load_users()
+
+                new_user_name = input("Enter new username: ").strip().lower()
+                user["Username"] = new_user_name
+
+                for account in users:
+                  if account["UserID"] == user["UserID"]:
+                      account["Username"] = new_user_name
+                      break
+              
+                save_users(users)
+              
+              if choice_edit == "3":
+                users = load_users()
+
+              if choice_edit == "4":
+                users = load_users()
+
+                new_email = input("Enter your E-Mail: ").strip().lower()
+                user["Email"] = new_email
+                
+              for account in users:
+                if account["UserID"] == user["UserID"]:
+                    account["Email"] = new_email
+                    break
+
+              save_users(users)
+
+              if choice_edit == "5":
+                users = load_users()
+
+              if choice_edit == "6":
+                print("No Changes; return to choice options")
+                break
+
       #---Placeholder Options---
       if choice_options == "2" or choice_options == "3" or choice_options == "4":
         break
