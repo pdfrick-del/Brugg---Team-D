@@ -22,9 +22,9 @@ while True:
 
     choice = " "
 
-    while choice != "1" and choice != "2":
+    while choice not in ("1", "2"):
       choice = input("Choose 1 or 2: ")
-      if choice != "1" and choice != "2":
+      if choice not in ("1", "2"):
         print("Error; return to choice")
 
     if choice == "1":
@@ -121,10 +121,10 @@ while True:
 
       Payment_Option =""
 
-      while Payment_Option != "TWINT" and Payment_Option != "BANK CARD":
+      while Payment_Option not in ("TWINT", "BANK CARD"):
         Payment_Option = input("Enter your payment option: ").strip().upper()
       
-        if Payment_Option != "TWINT" and Payment_Option  != "BANK CARD":
+        if Payment_Option not in ("TWINT", "BANK CARD"):
           print("Error; return to payment option")
 
       if Payment_Option == "TWINT" or Payment_Option  == "BANK CARD":
@@ -174,10 +174,10 @@ while True:
 
       choice_options = " "
         
-      while choice_options != "1" and choice_options != "2" and choice_options != "3" and choice_options != "4" and choice_options != "5":
+      while choice_options not in ("1", "2", "3", "4", "5"):
         choice_options = input("Choose 1, 2, 3, 4 or 5: ")
         
-        if choice_options != "1" and choice_options != "2" and choice_options != "3" and choice_options != "4" and choice_options != "5":
+        if choice_options not in ("1", "2", "3", "4", "5"):
           print("Error; return to options")
       
         if choice_options == "1":
@@ -200,7 +200,7 @@ while True:
 
             choice_edit = ""
 
-            while choice_edit != "1" and choice_edit != "2" and choice_edit != "3" and choice_edit != "4" and choice_edit != "5" and choice_edit != "6":
+            while choice_edit not in ("1", "2", "3", "4", "5", "6"):
               choice_edit = input ("Choose 1, 2, 3, 4, 5 or 6: ")
 
               if choice_edit == "1":
