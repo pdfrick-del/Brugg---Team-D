@@ -47,4 +47,9 @@ while True:
         if logged_in:  
             break
 
-        
+        elif choice == "2":
+            break
+
+        elif choice == "3":
+            print("Please contact your admin.")
+            break
