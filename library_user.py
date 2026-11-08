@@ -7,10 +7,17 @@ CSV_PATH = "Projekt/Brugg---Team-D/Library_User_Login_data.csv"
 
 #---Functions for the Code---
 def load_users():
-    with open(CSV_PATH, "r", newline="", encoding="utf-8") as file:
-      reader = csv.DictReader(file)
-      users = list(reader)
-    return users
+  with open(CSV_PATH, "r", newline="", encoding="utf-8") as file:
+    reader = csv.DictReader(file)
+    users = list(reader)
+  return users
+
+def save_users(users):
+  with open(CSV_PATH, "w", newline="", encoding="utf-8") as file:
+    writer = csv.DictWriter(file, fieldnames=users[0].keys())
+    writer.writeheader()
+    writer.writerows(users)
+
 
 
 while True:
@@ -127,8 +134,6 @@ while True:
         if Payment_Option not in ("TWINT", "BANK CARD"):
           print("Error; return to payment option")
 
-      if Payment_Option == "TWINT" or Payment_Option  == "BANK CARD":
-
         users = load_users()
           
         highest_id = 0
@@ -213,11 +218,8 @@ while True:
                   if account["UserID"] == user["UserID"]:
                       account["Name"] = new_name
                       break
-
-                with open(CSV_PATH, "w", newline="", encoding="utf-8") as file:
-                  writer = csv.DictWriter(file, fieldnames=users[0].keys())
-                  writer.writeheader()
-                  writer.writerows(users)
+              
+                save_users(users)
 
       #---Placeholder Options---
       if choice_options == "2" or choice_options == "3" or choice_options == "4":
