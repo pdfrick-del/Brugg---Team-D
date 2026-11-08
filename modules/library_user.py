@@ -33,7 +33,7 @@ while True:
       if choice in ("1", "2"):
         break
 
-    print("Error; return to choice")
+      print("Error; return to choice")
 
     if choice == "1":
       email = input("Enter email: ").strip().lower()
