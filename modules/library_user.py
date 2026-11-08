@@ -23,6 +23,7 @@ def save_users(users):
 while True:
   #---Libary User Login---
   while True:
+    
     print("Do you have a library user account?")
     print("1. YES")
     print("2. NO")
@@ -36,6 +37,7 @@ while True:
       print("Error; return to choice")
 
     if choice == "1":
+      
       email = input("Enter email: ").strip().lower()
       password = getpass.getpass("Enter password: ", echo_char="*")
 
@@ -56,13 +58,12 @@ while True:
         break
 
     elif choice == "2":
-
-      new_name = ""
       
       while True:
         new_name = input("Enter your first name and last name: ").strip().title()
 
-        if new_name == "":
+        if len(new_name.split()) < 2:
+          print("Please enter your first and last name")
           continue
 
         break
