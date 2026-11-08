@@ -28,18 +28,18 @@ while True:
                 print("Error; return to choice")
 
         if choice == "1":
-        librarian_ID = input("Enter email: ").strip().lower()
-        password = getpass.getpass("Enter password: ", echo_char="*")
+            librarian_ID = input("Enter email: ").strip().lower()
+            password = getpass.getpass("Enter password: ", echo_char="*")
 
-        users = load_users()
+            users = load_users()
 
-        logged_in = False
+            logged_in = False
 
-        for user in users:
-            if librarian_ID == user["LibrarianID"] and password == user["Password"]:
-                print("Welcome", user["Username"])
-                logged_in = True
-                break
+            for user in users:
+                if librarian_ID == user["LibrarianID"] and password == user["Password"]:
+                    print("Welcome", user["Username"])
+                    logged_in = True
+                    break
 
         else:
             print("Incorrect login credentials; return to choice")
