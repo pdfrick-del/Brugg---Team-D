@@ -3,7 +3,7 @@ import csv
 import getpass
 
 #---Variables for the Code---
-CSV_PATH = "Projekt/Brugg---Team-D/Librarian_Login_data.csv"
+CSV_PATH = "Projekt/Brugg---Team-D/data/Librarian_Login_data.csv"
 
 #---Functions for the Code---
 def load_users():

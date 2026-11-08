@@ -3,7 +3,7 @@ import csv
 import getpass
 
 #---Variables for the Code---
-CSV_PATH = "Projekt/Brugg---Team-D/Library_User_Login_data.csv"
+CSV_PATH = "Projekt/Brugg---Team-D/data/Library_User_Login_data.csv"
 
 #---Functions for the Code---
 def load_users():
@@ -241,12 +241,12 @@ while True:
                 new_email = input("Enter your E-Mail: ").strip().lower()
                 user["Email"] = new_email
                 
-              for account in users:
-                if account["UserID"] == user["UserID"]:
-                    account["Email"] = new_email
-                    break
+                for account in users:
+                  if account["UserID"] == user["UserID"]:
+                      account["Email"] = new_email
+                      break
 
-              save_users(users)
+                save_users(users)
 
               if choice_edit == "5":
                 users = load_users()
