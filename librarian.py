@@ -28,7 +28,7 @@ while True:
                 print("Error; return to choice")
 
         if choice == "1":
-            librarian_ID = input("Enter email: ").strip().lower()
+            librarian_ID = input("Enter ID: ").strip().lower()
             password = getpass.getpass("Enter password: ", echo_char="*")
 
             users = load_users()
@@ -41,11 +41,11 @@ while True:
                     logged_in = True
                     break
 
-        else:
-            print("Incorrect login credentials; return to choice")
+            else:
+                print("Incorrect login credentials; return to choice")
 
-        if logged_in:  
-            break
+            if logged_in:  
+                break
 
         elif choice == "2":
             break
