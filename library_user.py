@@ -64,8 +64,7 @@ while True:
         if new_name == "":
           continue
 
-        else:
-          break
+        break
 
       print("Choose your new user name")
 
@@ -98,8 +97,7 @@ while True:
           print("The password does not meet the requirements.")
           continue
 
-        else:
-          break
+        break
 
       new_email = ""
 
@@ -134,37 +132,37 @@ while True:
         if Payment_Option not in ("TWINT", "BANK CARD"):
           print("Error; return to payment option")
 
-        users = load_users()
+      users = load_users()
           
-        highest_id = 0
+      highest_id = 0
 
-        for user in users:
-          number = int(user["UserID"][1:])
-          if number > highest_id:
-            highest_id = number
+      for user in users:
+        number = int(user["UserID"][1:])
+        if number > highest_id:
+          highest_id = number
 
-        new_number = highest_id + 1
-        new_user_id = f"U{new_number:03d}"
+      new_number = highest_id + 1
+      new_user_id = f"U{new_number:03d}"
 
-        with open(CSV_PATH, "r", newline="", encoding="utf-8") as file:
-          text = file.read()
+      with open(CSV_PATH, "r", newline="", encoding="utf-8") as file:
+        text = file.read()
 
-        with open(CSV_PATH, "a", newline="", encoding="utf-8") as file:
-          if not text.endswith("\n") and text != "":
-            file.write("\n")
+      with open(CSV_PATH, "a", newline="", encoding="utf-8") as file:
+        if not text.endswith("\n") and text != "":
+          file.write("\n")
 
-          writer = csv.DictWriter(file, fieldnames=users[0].keys())
-          writer.writerow({
-            "UserID": new_user_id,
-            "Name": new_name,
-            "Username": new_user_name,
-            "Password": new_password,
-            "Role": "Library User",
-            "Email": new_email,
-            "Payment_Options": Payment_Option 
-          })
+        writer = csv.DictWriter(file, fieldnames=users[0].keys())
+        writer.writerow({
+          "UserID": new_user_id,
+          "Name": new_name,
+          "Username": new_user_name,
+          "Password": new_password,
+          "Role": "Library User",
+          "Email": new_email,
+          "Payment_Options": Payment_Option 
+        })
 
-        print("Your account has been created; return to Log in.")
+      print("Your account has been created; return to Log in.")
 
   #---Menu---
   while True:
