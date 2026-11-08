@@ -26,5 +26,25 @@ while True:
             choice = input("Choose 1, 2 or 3: ")
             if choice not in ("1", "2", "3"):
                 print("Error; return to choice")
-    
-            
+
+        if choice == "1":
+        librarian_ID = input("Enter email: ").strip().lower()
+        password = getpass.getpass("Enter password: ", echo_char="*")
+
+        users = load_users()
+
+        logged_in = False
+
+        for user in users:
+            if librarian_ID == user["LibrarianID"] and password == user["Password"]:
+                print("Welcome", user["Username"])
+                logged_in = True
+                break
+
+        else:
+            print("Incorrect login credentials; return to choice")
+
+        if logged_in:  
+            break
+
+        
