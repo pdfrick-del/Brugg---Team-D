@@ -1,6 +1,13 @@
 import csv
 import getpass
 
+def load_users():
+    with open("Projekt/Brugg---Team-D/Library_User_Login_data.csv", "r", newline="", encoding="utf-8") as file:
+      reader = csv.DictReader(file)
+      users = list(reader)
+    return users
+
+
 while True:
   #---Libary User Login---
   while True:
@@ -19,23 +26,21 @@ while True:
       email = input("Enter email: ").strip().lower()
       password = getpass.getpass("Enter password: ", echo_char="*")
 
-      with open("Projekt/Brugg---Team-D/Library_User_Login_data.csv", "r", newline="", encoding="utf-8") as file:
-        reader = csv.DictReader(file)
-        users = list(reader)
+      users = load_users()
 
-        logged_in = False
+      logged_in = False
 
-        for user in users:
-          if email == user["Email"] and password == user["Password"]:
-            print("Welcome", user["Username"])
-            logged_in = True
-            break
-
-        else:
-          print("Incorrect login credentials; return to choice")
-
-        if logged_in:  
+      for user in users:
+        if email == user["Email"] and password == user["Password"]:
+          print("Welcome", user["Username"])
+          logged_in = True
           break
+
+      else:
+        print("Incorrect login credentials; return to choice")
+
+      if logged_in:  
+        break
 
     elif choice == "2":
 
@@ -171,17 +176,50 @@ while True:
         
       while choice_options != "1" and choice_options != "2" and choice_options != "3" and choice_options != "4" and choice_options != "5":
         choice_options = input("Choose 1, 2, 3, 4 or 5: ")
+        
         if choice_options != "1" and choice_options != "2" and choice_options != "3" and choice_options != "4" and choice_options != "5":
           print("Error; return to options")
+      
+        if choice_options == "1":
+          while True:
+            print("User ID:", user["UserID"])
+            print("Name:", user["Name"])
+            print("Username:", user["Username"])
+            print("Password:", "*" * len(user["Password"]))
+            print("Role:", user["Role"])
+            print("Email:", user["Email"])
+            print("Payment Options:", user["Payment_Options"])
 
-      if choice_options == "1":
-        print("User ID:", user["UserID"])
-        print("Name:", user["Name"])
-        print("Username:", user["Username"])
-        print("Password:", "*" * len(user["Password"]))
-        print("Role:", user["Role"])
-        print("Email:", user["Email"])
-        print("Payment Options:", user["Payment_Options"])
+            print("Would you like to edit your account information?")
+            print("1. Name")
+            print("2. Username")
+            print("3. Password")
+            print("4. Email")
+            print("5. Payment Options")
+            print("6 No")
+
+            choice_edit = ""
+
+            while choice_edit != "1" and choice_edit != "2" and choice_edit != "3" and choice_edit != "4" and choice_edit != "5" and choice_edit != "6":
+              choice_edit = input ("Choose 1, 2, 3, 4, 5 or 6: ")
+
+              if choice_edit == "1":
+                with open("Projekt/Brugg---Team-D/Library_User_Login_data.csv", "r", newline="", encoding="utf-8") as file:
+                  reader = csv.DictReader(file)
+                  users = list(reader)
+
+                new_name = input("Enter your new name: ").strip().title()
+                user["Name"] = new_name
+
+                for account in users:
+                  if account["UserID"] == user["UserID"]:
+                      account["Name"] = new_name
+                      break
+
+                with open("Projekt/Brugg---Team-D/Library_User_Login_data.csv", "w", newline="", encoding="utf-8") as file:
+                  writer = csv.DictWriter(file, fieldnames=users[0].keys())
+                  writer.writeheader()
+                  writer.writerows(users)
 
       #---Placeholder Options---
       if choice_options == "2" or choice_options == "3" or choice_options == "4":
