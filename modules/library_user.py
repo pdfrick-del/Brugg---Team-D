@@ -27,9 +27,7 @@ while True:
   #---Libary User Login---
   while True:
     
-    print("Do you have a library user account?")
-    print("1. YES")
-    print("2. NO")
+    print("Do you have a library user account?\n", "1. YES\n", "2. NO")
 
     while True:
       choice = input("Choose 1 or 2: ")
@@ -79,8 +77,7 @@ while True:
 
           for user in users:
             if new_user_name == user["Username"]:
-              print("Username already exists")
-              print("Error; return to new user name")
+              print("Username already exists\n", "Error; return to new user name")
               break
           
           else:
@@ -115,17 +112,15 @@ while True:
 
         for user in users:
           if new_email == user["Email"]:
-            print("Email already exists")
-            print("Error; return to new email")
+            print("Email already exists\n", "Error; return to new email")
+            print()
             break
 
         else:
           print("Email is available")
           break    
       
-      print("Choose your payment option.")
-      print("TWINT")
-      print("Bank Card")
+      print("Choose your payment option.\n", "TWINT\n", "Bank Card")
 
       Payment_Option =""
 
@@ -172,11 +167,7 @@ while True:
     if logged_in == True:
       print("What do you want to do", user["Username"], "?")
       #---Placeholder Options---
-      print("1. viewing account information")
-      print("2. viewing fees")
-      print("3. searching books")
-      print("4. requesting books")
-      print("5. Log out")
+      print("1. viewing account information\n", "2. viewing fees\n", "3. searching books\n", "4. requesting books\n", "5. Log out")
 
       choice_options = " "
         
@@ -197,12 +188,7 @@ while True:
             print("Payment Options:", user["Payment_Options"])
 
             print("Would you like to edit your account information?")
-            print("1. Name")
-            print("2. Username")
-            print("3. Password")
-            print("4. Email")
-            print("5. Payment Options")
-            print("6 No")
+            print("1. Name\n", "2. Username\n", "3. Password\n", "4. Email\n", "5. Payment Options\n", "6 No")
 
             choice_edit = ""
 
