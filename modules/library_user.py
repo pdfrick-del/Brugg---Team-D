@@ -1,9 +1,10 @@
 #---Import for the Code---
 import csv
 import getpass
+import string
 
 #---Variables for the Code---
-CSV_PATH = "Projekt/Brugg---Team-D/data/Library_User_Login_data.csv"
+CSV_PATH = "data/Library_User_Login_data.csv"
 
 #---Functions for the Code---
 def load_users():
@@ -21,6 +22,8 @@ def save_users(users):
 
 
 while True:
+  users = load_users()
+
   #---Libary User Login---
   while True:
     
@@ -40,8 +43,6 @@ while True:
       
       email = input("Enter email: ").strip().lower()
       password = getpass.getpass("Enter password: ", echo_char="*")
-
-      users = load_users()
 
       logged_in = False
 
@@ -70,15 +71,11 @@ while True:
 
       print("Choose your new user name")
 
-      new_user_name =""
-
       while True:
           new_user_name = input("Enter new username: ").strip().lower()
           
           if new_user_name == "":
             continue
-
-          users = load_users()
 
           for user in users:
             if new_user_name == user["Username"]:
@@ -90,12 +87,16 @@ while True:
             print("Username is available")
             break
 
-      new_password = ""
-
       while True:
-        new_password = getpass.getpass("Enter new password. Please make sure that the password is at least 8 characters long and does not contain any spaces.: ", echo_char="*")
+        new_password = getpass.getpass("Enter new password.\n"
+          "Please make sure that the password is at least 8 characters long and does not contain any spaces.\n"
+          "It must also contain at least one special character and one number.: ", 
+          echo_char="*")
 
-        if new_password == "" or len(new_password) < 8 or " " in new_password:
+        if (len(new_password) < 8 
+          or " " in new_password
+          or not any(char.isdigit() for char in new_password)
+          or not any(char in string.punctuation for char in new_password)):
           print("The password does not meet the requirements.")
           continue
 
