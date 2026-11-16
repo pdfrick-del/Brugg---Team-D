@@ -12,7 +12,7 @@ while role != "1" and role != "2":
     print("Error; return to user role")
 
 if role == "1":
-    import library_user
+    from modules import library_user
 
 if role == "2":
-   import librarian
+   from modules import librarian
