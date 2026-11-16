@@ -19,8 +19,90 @@ def save_users(users):
         writer.writeheader()
         writer.writerows(users)
 
+def get_name():
+    while True:
+        new_name = input("Enter your first name and last name: ").strip().title()
 
+        if len(new_name.split()) >= 2:
+            return new_name
 
+        print("Please enter your first and last name")
+        
+def get_username(users, current_user_id=None):
+    while True:   
+        new_user_name = input("Enter new username: ").strip().lower()
+        
+        if not new_user_name:
+            continue
+
+        for user in users:
+            if (new_user_name == user["Username"] 
+                and user["UserID"] != current_user_id):
+                print("Username already exists\nError; return to new user name")
+                break
+        else:
+            print("Username is available")
+            return new_user_name
+
+def get_password():
+    while True:
+        new_password = getpass.getpass(
+            "Enter new password.\n"
+            "Please make sure that the password is at least 8 characters long and does not contain any spaces.\n"
+            "It must also contain at least one special character and one number: ", 
+            echo_char="*")
+
+        if (len(new_password) >= 8 
+            and " " not in new_password
+            and any(char.isdigit() for char in new_password)
+            and any(char in string.punctuation for char in new_password)):
+            return new_password
+
+        print("The password does not meet the requirements.")
+
+def get_email(users, current_user_id=None):
+    while True:
+        new_email = input("Enter your E-Mail: ").strip().lower()
+
+        if (new_email.count("@") != 1
+            or not new_email.split("@")[0] 
+            or "." not in new_email.split("@")[1] 
+            or " " in new_email):
+            print("Invalid email address. Please try again.")
+            continue
+
+        for user in users:
+            if (new_email == user["Email"]
+                and user["UserID"] != current_user_id):
+                    print("Email already exists\nError; return to new email")
+                    break
+
+        else:
+            print("Email is available")
+            return new_email  
+
+def update_user(user, field, new_value):
+    users = load_users()
+
+    for account in users:
+        if account["UserID"] == user["UserID"]:
+            account[field] = new_value
+            user[field] = new_value
+            save_users(users)
+            return
+
+def get_payment_options():     
+    print("Choose your payment option.\n TWINT\n Bank Card")
+
+    while True:
+        payment_option = input("Enter your payment option: ").strip().upper()
+
+        if payment_option in ("TWINT", "BANK CARD"):
+            return payment_option
+        
+        print("Error; return to payment option")
+
+#---Flow---   
 while True:
     users = load_users()
 
@@ -55,74 +137,14 @@ while True:
             print("Incorrect login credentials; return to choice")
 
         elif choice == "2":
-            while True:
-                new_name = input("Enter your first name and last name: ").strip().title()
-
-                if len(new_name.split()) >= 2:
-                    break
-
-                print("Please enter your first and last name")
-
-            while True:
-                new_user_name = input("Enter new username: ").strip().lower()
-          
-                if not new_user_name:
-                    continue
-
-                for user in users:
-                    if new_user_name == user["Username"]:
-                        print("Username already exists\nError; return to new user name")
-                        break
-                else:
-                    print("Username is available")
-                    break
-
-            while True:
-                new_password = getpass.getpass(
-                    "Enter new password.\n"
-                    "Please make sure that the password is at least 8 characters long and does not contain any spaces.\n"
-                    "It must also contain at least one special character and one number: ", 
-                    echo_char="*")
-
-                if (len(new_password) >= 8 
-                    and " " not in new_password
-                    and any(char.isdigit() for char in new_password)
-                    and any(char in string.punctuation for char in new_password)):
-                    break
-        
-                print("The password does not meet the requirements.")
-
-            while True:
-                new_email = input("Enter your E-Mail: ").strip().lower()
-
-                if (new_email.count("@") != 1
-                    or not new_email.split("@")[0] 
-                    or "." not in new_email.split("@")[1] 
-                    or " " in new_email):
-                    print("Invalid email address. Please try again.")
-                    continue
-
-                for user in users:
-                    if new_email == user["Email"]:
-                        print("Email already exists\nError; return to new email")
-                        break
-
-                else:
-                    print("Email is available")
-                    break    
-      
-            print("Choose your payment option.\n TWINT\n Bank Card")
-
-            while True:
-                payment_option = input("Enter your payment option: ").strip().upper()
-      
-                if payment_option in ("TWINT", "BANK CARD"):
-                    break
-                
-                print("Error; return to payment option")
-
             highest_id = max((int(user["UserID"][1:]) for user in users), default=0)
             new_user_id = f"U{highest_id + 1:03d}"
+
+            new_name = get_name()
+            new_user_name = get_username(users)
+            new_password = get_password()
+            new_email = get_email(users)
+            payment_option = get_payment_options()
 
             users.append({
                 "UserID": new_user_id,
@@ -163,67 +185,37 @@ while True:
                     choice_edit = input ("Choose 1, 2, 3, 4, 5 or 6: ")
 
                     if choice_edit == "1":
-                        users = load_users()
-
-                        new_name = input("Enter your new name: ").strip().title()
-                        user["Name"] = new_name
-
-                        for account in users:
-                            if account["UserID"] == user["UserID"]:
-                                account["Name"] = new_name
-                                break
-            
-                        save_users(users)
+                        update_user(user, "Name", get_name())
                         break
 
-                    if choice_edit == "2":
-                        users = load_users()
-
-                        new_user_name = input("Enter new username: ").strip().lower()
-                        user["Username"] = new_user_name
-
-                        for account in users:
-                            if account["UserID"] == user["UserID"]:
-                                account["Username"] = new_user_name
-                                break
-            
-                        save_users(users)
+                    elif choice_edit == "2":
+                        update_user(user, "Username", get_username(load_users(), user["UserID"]))
                         break
             
-                    if choice_edit == "3":
-                        users = load_users()
+                    elif choice_edit == "3":
+                        update_user(user, "Password", get_password())
                         break
 
-                    if choice_edit == "4":
-                        users = load_users()
-
-                        new_email = input("Enter your E-Mail: ").strip().lower()
-                        user["Email"] = new_email
-            
-                        for account in users:
-                            if account["UserID"] == user["UserID"]:
-                                account["Email"] = new_email
-                                break
-
-                        save_users(users)
+                    elif choice_edit == "4":
+                        update_user(user, "Email", get_email(load_users(), user["UserID"]))
                         break
 
-                    if choice_edit == "5":
-                        users = load_users()
+                    elif choice_edit == "5":
+                        update_user(user, "Payment_Options", get_payment_options())
                         break
 
-                    if choice_edit == "6":
+                    elif choice_edit == "6":
                         break
 
                 if choice_edit == "6":
-                    print("No Changes; return to choice options")
+                    print("Return to choice options")
                     break
 
-        #---Placeholder Options---
-        if choice_options == "2" or choice_options == "3" or choice_options == "4":
-            break
+            #---Placeholder Options---
+            if choice_options == "2" or choice_options == "3" or choice_options == "4":
+                break
 
-        if choice_options == "5":
-            print("logging out; return to choice")
-            logged_in = False
-            break
+            if choice_options == "5":
+                print("logging out; return to choice")
+                logged_in = False
+                break
