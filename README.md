@@ -221,7 +221,7 @@ As a library user, I want to select my user role and log in to my account so tha
 - When the library user decides on the option “view account”.
 - Then the system shows them their username, email, and saved payment information. The user can decide to edit this information and save it.
 
-#### AC7: Changing password
+#### AC7: Changing password (Optional / If Time Permits)
 - Given a library user is logged in or in the login process.
 - When they decide to change their password in their account information or select the option “password forgotten” in the login process.
 - Then they receive a verification code via e-mail; If the correct verification code is entered, the user can set and save a new password.
