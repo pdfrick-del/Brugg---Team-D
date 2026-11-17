@@ -259,12 +259,12 @@ As a library user, I want to view my membership fees so that I know which I have
 - When he chooses the option "membership fees".
 - Then the system shows him the last three fees that were paid and displays the outstanding and upcoming fees as they are due.
 
-#### AC2: Notification option
+#### AC2: Notification option (Optional / If Time Permits)
 - Given a library user has opened the option "membership fees".
 - When they decide on the option "notifications" within.
 - Then the system gives them the option to activate notifications via e-mail when a fee is outstanding.
 
-#### AC3: Sending Notifications
+#### AC3: Sending Notifications  (Optional / If Time Permits)
 - Given a library user has activated notifications for membership fees.
 - When the program starts and detects an overdue unpaid membership fee for that user.
 - Then the system sends a reminder e-mail to the user.
@@ -293,7 +293,7 @@ As a library user, I want to request new books so that they can be added to the 
 - When the request is submitted.
 - Then the system forwards it to the librarians and shows a confirmation notification for the user.
 
-#### AC3: Information E-Mail
+#### AC3: Information E-Mail  (Optional / If Time Permits)
 - Given a library user has submitted a book request.
 - When the program starts and detects a request has been accepted and the book was added or the request was rejected.
 - Then it sends an information e-mail to the user if no notification has been sent for that request yet.
