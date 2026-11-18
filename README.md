@@ -222,9 +222,9 @@ As a library user, I want to select my user role and log in to my account so tha
 - Then the system shows them their UserID, Name, Password but censored, Username, Email, and saved payment information. The user can decide to edit this information and save it, except the UserID.
 - And to change their password, the user must first enter their current password.
 
-#### AC7: Forgotten Password
+#### AC7: Forgotten Login Credentials
 - Given a library user is in the login process.
-- When the user selects the option “password forgotten”.
+- When the user selects the option “forgot login credentials”.
 - Then the system displays the message: "Please contact your admin."
 
 ### User Story 5: Login librarian - Patrick:
