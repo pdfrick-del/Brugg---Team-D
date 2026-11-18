@@ -271,9 +271,9 @@ As a library user, I want to view my membership fees so that I know which I have
 - Then the system displays a reminder message to the user as soon as they are loged in.
 
 #### AC4: Late fees
-- Given a library user has an unpaid overdue fee.
-- When the program starts and detects that the fee has been overdue for at least 30 days.
-- Then the system adds a late fee to that membership fee,  if one has not already been added, which will also be displayed with the other fees.
+- Given a library user has outstanding membership fees.
+- When the user logs in and the annual fee review date (the first day of their registration month) has been reached.
+- Then the system adds a late fee of 10% to the outstanding amount from previous years, provided the late fee for that year has not already been applied.
 
 #### AC5: Discounts
 - Given a library user has an account with a recorded creation date.
