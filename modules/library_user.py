@@ -109,12 +109,12 @@ while True:
   #---Libary User Login---
     while True:
     
-        print("Do you have a library user account?\n 1. YES\n 2. NO")
+        print("Do you have a library user account?\n 1. YES\n 2. NO\n 3. Yes, but I forgot one of my login credentials." )
 
         while True:
-            choice = input("Choose 1 or 2: ")
+            choice = input("Choose 1, 2 or 3: ")
 
-            if choice in ("1", "2"):
+            if choice in ("1", "2", "3"):
                 break
 
             print("Error; return to choice")
@@ -159,6 +159,9 @@ while True:
             save_users(users)
             print("Your account has been created; return to Log in.")
 
+        elif choice == "3":
+            print("Please contact your admin.")
+
   #---Menu---
     while logged_in:
         print("What do you want to do", user["Username"], "?")
@@ -193,8 +196,14 @@ while True:
                         break
             
                     elif choice_edit == "3":
-                        update_user(user, "Password", get_password())
-                        break
+                        password = getpass.getpass("Enter password: ", echo_char="*")
+
+                        if password == user["Password"]:
+                            update_user(user, "Password", get_password())
+                            break
+
+                        else:
+                            print("Incorrect password")
 
                     elif choice_edit == "4":
                         update_user(user, "Email", get_email(load_users(), user["UserID"]))
