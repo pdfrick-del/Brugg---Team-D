@@ -258,7 +258,7 @@ As a library user, I want to view my membership fees so that I know which I have
 #### AC1: Viewing membership fees
 - Given a library user is logged in.
 - When he chooses the option "membership fees".
-- Then the system shows him the last three fees that were paid and displays the outstanding and upcoming fees as they are due.
+- Then the system shows them the outstanding and upcoming fees as they are due.
 
 #### AC2: Notification option
 - Given a library user has opened the option "membership fees".
