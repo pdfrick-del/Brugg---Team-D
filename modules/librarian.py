@@ -45,7 +45,7 @@ def libarian_login():
 def libarian_menu(user):
     while True:
         print("What do you want to do", user["Username"], "?\n"
-                "1. adding books\n2. updating books\n3. deleting books\n4. search books\n5. View Requests\n6. Log out")
+                "1. adding books\n2. updating books\n3. deleting books\n4. search books\n5. Log out")
 
         while True:
             choice_options = input("Choose 1, 2, 3, 4, 5 or 6: ")
@@ -68,8 +68,5 @@ def libarian_menu(user):
             break
 
         if choice_options == "5":
-            break
-
-        if choice_options == "6":
             print("logging out; return to choice")
             return

@@ -87,7 +87,7 @@ def libary_user_login():
 def libary_user_menu(user, fees):
     while True:
         print("What do you want to do", user["Username"], "?\n"
-              "1. viewing account information\n2. viewing fees\n3. searching books\n4. requesting books\n5. Log out")
+              "1. viewing account information\n2. viewing fees\n3. searching books\n4.Issued Books \n5.Log out")
     
         while True:
             choice_options = input("Choose 1, 2, 3, 4 or 5: ")
