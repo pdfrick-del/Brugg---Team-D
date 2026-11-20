@@ -1,6 +1,6 @@
 import csv
 
-CATALOG_FILE = "fictional_books_catalog.csv"
+CATALOG_FILE = "data/fictional_books_catalog.csv"
 
 
 # ==========================
@@ -105,19 +105,19 @@ def filter_by_genre(books):
 
 def sort_by_title(books):
 
-    books = sorted(
+    return sorted(
         books,
         key=lambda book: book["Book_Name"].lower()
     )
-    display_books(books)
 
 
 def sort_by_author(books):
 
-    return sorted(
+    books = sorted(
         books,
         key=lambda book: book["Author"].lower()
     )
+    display_books(books)
 
 
 def sort_by_year(books):
@@ -126,7 +126,7 @@ def sort_by_year(books):
         books,
         key=lambda book: int(book["Publication_Year"])
     )
-
+    display_books(books)
 
 def sort_by_genre(books):
 
@@ -134,6 +134,7 @@ def sort_by_genre(books):
         books,
         key=lambda book: book["Genre"].lower()
     )
+    display_books(books)
 
 
 # ==========================
@@ -213,8 +214,9 @@ def filter_and_sort():
         print("No matching books found")
         return
 
-    books = choose_sort(books)
-    display_books(books)
+    sorted_books = choose_sort(books)
+    if sorted_books is not None:
+        display_books(sorted_books)
 
 
 # ==========================
@@ -272,7 +274,9 @@ while True:
         filter_menu()
 
     elif choice=="2":
-        choose_sort()   
+        sorted_books = choose_sort(books)
+        if sorted_books is not None:
+            display_books(sorted_books)
 
     elif choice=="3":
         filter_and_sort()
@@ -283,4 +287,3 @@ while True:
     
     else:
         print("Invalid choice")
-
