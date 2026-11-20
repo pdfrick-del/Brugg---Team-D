@@ -21,7 +21,7 @@ def libarian_login():
                 print("Error; return to choice")
 
         if choice == "1":
-            librarian_ID = input("Enter ID: ").strip().lower()
+            librarian_ID = input("Enter ID: ").strip()
             password = getpass.getpass("Enter password: ", echo_char="*")
 
             users = user_data.load_users(CSV_PATH)
