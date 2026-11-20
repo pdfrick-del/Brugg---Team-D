@@ -26,19 +26,13 @@ def libarian_login():
 
             users = user_data.load_users(CSV_PATH)
 
-            logged_in = False
-
             for user in users:
                 if librarian_ID == user["LibrarianID"] and password == user["Password"]:
                     print("Welcome", user["Username"])
-                    logged_in = True
-                    break
+                    return user
 
             else:
                 print("Incorrect login credentials; return to choice")
-
-            if logged_in:  
-                break
 
         elif choice == "2":
             return
@@ -48,3 +42,34 @@ def libarian_login():
             return
 
 #Menu Options: Add Books, Update Books, delete Books, search books
+def libarian_menu(user):
+    while True:
+        print("What do you want to do", user["Username"], "?\n"
+                "1. adding books\n2. updating books\n3. deleting books\n4. search books\n5. View Requests\n6. Log out")
+
+        while True:
+            choice_options = input("Choose 1, 2, 3, 4, 5 or 6: ")
+
+            if choice_options in ("1", "2", "3", "4", "5", "6"):
+                break
+
+            print("Error; return to options.")
+
+        if choice_options == "1":
+            break
+
+        if choice_options == "2":
+            break
+
+        if choice_options == "3":
+            break
+
+        if choice_options == "4":
+            break
+
+        if choice_options == "5":
+            break
+
+        if choice_options == "6":
+            print("logging out; return to choice")
+            return
