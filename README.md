@@ -219,16 +219,17 @@ As a library user, I want to select my user role and log in to my account so tha
 #### AC6: View and edit account information
 - Given a library user is successfully logged in.
 - When the library user decides on the option “view account”.
-- Then the system shows them their username, email, and saved payment information. The user can decide to edit this information and save it.
+- Then the system shows them their UserID, Name, Password but censored, Username, Email, and saved payment information. The user can decide to edit this information and save it, except the UserID.
+- And to change their password, the user must first enter their current password.
 
-#### AC7: Changing password (Optional / If Time Permits)
-- Given a library user is logged in or in the login process.
-- When they decide to change their password in their account information or select the option “password forgotten” in the login process.
-- Then they receive a verification code via e-mail; If the correct verification code is entered, the user can set and save a new password.
+#### AC7: Forgotten Login Credentials
+- Given a library user is in the login process.
+- When the user selects the option “forgot login credentials”.
+- Then the system displays the message: "Please contact your admin."
 
 ### User Story 5: Login librarian - Patrick:
 
-As a librarian, I want to select my user role and log in to my account so that I can access the system's features for a librarian.
+As a librarian, I want to select my user role and log in to my account so that I can access the system's features for a librarian. The librarian account is already set up when the application starts.
 
 #### AC1: Selecting the librarian role
 - Given the program has started.
@@ -238,7 +239,7 @@ As a librarian, I want to select my user role and log in to my account so that I
 #### AC2: Forgotten account information or new account
 - Given a librarian is in the login process
 - When they select "Forgot your account information or don't have an account?"
-- Then the system displays the message: “Please contact your admin."
+- Then the system displays the message: "Please contact your admin."
 
 #### AC3: Entering login credentials
 - Given a librarian is in the login process
@@ -257,22 +258,22 @@ As a library user, I want to view my membership fees so that I know which I have
 #### AC1: Viewing membership fees
 - Given a library user is logged in.
 - When he chooses the option "membership fees".
-- Then the system shows him the last three fees that were paid and displays the outstanding and upcoming fees as they are due.
+- Then the system shows them the outstanding and upcoming fees as they are due.
 
-#### AC2: Notification option (Optional / If Time Permits)
+#### AC2: Notification option
 - Given a library user has opened the option "membership fees".
 - When they decide on the option "notifications" within.
-- Then the system gives them the option to activate notifications via e-mail when a fee is outstanding.
+- Then the system gives them the option to activate notifications when a fee is outstanding, which will appear as a message when they log in.
 
-#### AC3: Sending Notifications  (Optional / If Time Permits)
+#### AC3: Sending Notifications
 - Given a library user has activated notifications for membership fees.
-- When the program starts and detects an overdue unpaid membership fee for that user.
-- Then the system sends a reminder e-mail to the user.
+- When the libary user logs in and the program detects an overdue unpaid membership fee for that user.
+- Then the system displays a reminder message to the user as soon as they are loged in.
 
 #### AC4: Late fees
-- Given a library user has an unpaid overdue fee.
-- When the program starts and detects that the fee has been overdue for at least 30 days.
-- Then the system adds a late fee to that membership fee,  if one has not already been added, which will also be displayed with the other fees.
+- Given a library user has outstanding membership fees.
+- When the user logs in and the annual fee review date (the first day of their registration month) has been reached.
+- Then the system adds a late fee of 10% to the outstanding amount from previous years, provided the late fee for that year has not already been applied.
 
 #### AC5: Discounts
 - Given a library user has an account with a recorded creation date.
@@ -293,10 +294,10 @@ As a library user, I want to request new books so that they can be added to the 
 - When the request is submitted.
 - Then the system forwards it to the librarians and shows a confirmation notification for the user.
 
-#### AC3: Information E-Mail  (Optional / If Time Permits)
+#### AC3: Information Message
 - Given a library user has submitted a book request.
-- When the program starts and detects a request has been accepted and the book was added or the request was rejected.
-- Then it sends an information e-mail to the user if no notification has been sent for that request yet.
+- When the user logs in and the program detects a request has been accepted and the book was added or the request was rejected.
+- Then it displays an information message to the user if no notification has been sent for that request yet.
 
 
 ## Program Structure 🏛️

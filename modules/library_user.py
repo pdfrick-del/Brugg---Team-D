@@ -1,120 +1,28 @@
-#---Import for the Code---
-import csv
+#---Imports for the Code---
 import getpass
-import string
+import csv
+from datetime import date
 from pathlib import Path
+from modules import user_data
 
 #---Variables for the Code---
-CSV_PATH = Path(__file__).resolve().parent.parent / "data" / "Library_User_Login_data.csv"
-FIELDNAMES = ["UserID", "Name", "Username", "Password", "Role", "Email", "Payment_Options"]
+CSV_PATH_LOGIN = Path(__file__).resolve().parent.parent / "data" / "Library_User_Login_data.csv"
+CSV_PATH_FEES = Path(__file__).resolve().parent.parent / "data" / "Library_User_Fees_data.csv"
+FIELDNAMES_LOGIN = ["UserID", "Name", "Username", "Password", "Role", "Email", "Payment_Options"]
+FIELDNAMES_FEES = ["UserID", "Account_Creation_Date"]
 
-#---Functions for the Code---
-def load_users():
-    with open(CSV_PATH, "r", newline="", encoding="utf-8") as file:
-        return list(csv.DictReader(file))
-
-def save_users(users):
-    with open(CSV_PATH, "w", newline="", encoding="utf-8") as file:
-        writer = csv.DictWriter(file, fieldnames=FIELDNAMES)
-        writer.writeheader()
-        writer.writerows(users)
-
-def get_name():
+#---Libary User Login---
+def libary_user_login():
     while True:
-        new_name = input("Enter your first name and last name: ").strip().title()
-
-        if len(new_name.split()) >= 2:
-            return new_name
-
-        print("Please enter your first and last name")
-        
-def get_username(users, current_user_id=None):
-    while True:   
-        new_user_name = input("Enter new username: ").strip().lower()
-        
-        if not new_user_name:
-            continue
-
-        for user in users:
-            if (new_user_name == user["Username"] 
-                and user["UserID"] != current_user_id):
-                print("Username already exists\nError; return to new user name")
-                break
-        else:
-            print("Username is available")
-            return new_user_name
-
-def get_password():
-    while True:
-        new_password = getpass.getpass(
-            "Enter new password.\n"
-            "Please make sure that the password is at least 8 characters long and does not contain any spaces.\n"
-            "It must also contain at least one special character and one number: ", 
-            echo_char="*")
-
-        if (len(new_password) >= 8 
-            and " " not in new_password
-            and any(char.isdigit() for char in new_password)
-            and any(char in string.punctuation for char in new_password)):
-            return new_password
-
-        print("The password does not meet the requirements.")
-
-def get_email(users, current_user_id=None):
-    while True:
-        new_email = input("Enter your E-Mail: ").strip().lower()
-
-        if (new_email.count("@") != 1
-            or not new_email.split("@")[0] 
-            or "." not in new_email.split("@")[1] 
-            or " " in new_email):
-            print("Invalid email address. Please try again.")
-            continue
-
-        for user in users:
-            if (new_email == user["Email"]
-                and user["UserID"] != current_user_id):
-                    print("Email already exists\nError; return to new email")
-                    break
-
-        else:
-            print("Email is available")
-            return new_email  
-
-def update_user(user, field, new_value):
-    users = load_users()
-
-    for account in users:
-        if account["UserID"] == user["UserID"]:
-            account[field] = new_value
-            user[field] = new_value
-            save_users(users)
-            return
-
-def get_payment_options():     
-    print("Choose your payment option.\n TWINT\n Bank Card")
-
-    while True:
-        payment_option = input("Enter your payment option: ").strip().upper()
-
-        if payment_option in ("TWINT", "BANK CARD"):
-            return payment_option
-        
-        print("Error; return to payment option")
-
-#---Flow---   
-while True:
-    users = load_users()
-
-  #---Libary User Login---
-    while True:
+        users = user_data.load_users(CSV_PATH_LOGIN)
+        fees = user_data.load_users(CSV_PATH_FEES)
     
-        print("Do you have a library user account?\n 1. YES\n 2. NO")
+        print("Do you have a library user account?\n 1. YES\n 2. NO\n 3. Yes, but I forgot one of my login credentials.")
 
         while True:
-            choice = input("Choose 1 or 2: ")
+            choice = input("Choose 1, 2 or 3: ")
 
-            if choice in ("1", "2"):
+            if choice in ("1", "2", "3"):
                 break
 
             print("Error; return to choice")
@@ -122,29 +30,35 @@ while True:
         if choice == "1":
             email = input("Enter email: ").strip().lower()
             password = getpass.getpass("Enter password: ", echo_char="*")
+            user_id = ""
 
             logged_in = False
 
             for user in users:
                 if email == user["Email"] and password == user["Password"]:
+                    user_id = user["UserID"]
                     print("Welcome", user["Username"])
                     logged_in = True
                     break
 
-            if logged_in:  
-                break
-
+            if logged_in:
+                for fee in fees:
+                    if user_id == fee["UserID"]:
+                        return user, fee
+            
             print("Incorrect login credentials; return to choice")
 
         elif choice == "2":
             highest_id = max((int(user["UserID"][1:]) for user in users), default=0)
             new_user_id = f"U{highest_id + 1:03d}"
 
-            new_name = get_name()
-            new_user_name = get_username(users)
-            new_password = get_password()
-            new_email = get_email(users)
-            payment_option = get_payment_options()
+            new_name = user_data.get_name()
+            new_user_name = user_data.get_username(users)
+            new_password = user_data.get_password()
+            new_email = user_data.get_email(users)
+            payment_option = user_data.get_payment_options()
+
+            registration_date = date.today().isoformat()
 
             users.append({
                 "UserID": new_user_id,
@@ -153,17 +67,27 @@ while True:
                 "Password": new_password,
                 "Role": "Library User",
                 "Email": new_email,
-                "Payment_Options": payment_option 
+                "Payment_Options": payment_option,
             })
 
-            save_users(users)
+            user_data.save_users(CSV_PATH_LOGIN, users, FIELDNAMES_LOGIN)
+            
+            fees.append({
+                "UserID": new_user_id,
+                "Account_Creation_Date": registration_date
+            })
+
+            user_data.save_users(CSV_PATH_FEES, fees, FIELDNAMES_FEES)
             print("Your account has been created; return to Log in.")
 
-  #---Menu---
-    while logged_in:
-        print("What do you want to do", user["Username"], "?")
-        #---Placeholder Options---
-        print("1. viewing account information\n2. viewing fees\n3. searching books\n4. requesting books\n5. Log out")
+        elif choice == "3":
+            print("Please contact your admin.")
+
+#---Menu---
+def libary_user_menu(user, fees):
+    while True:
+        print("What do you want to do", user["Username"], "?\n"
+              "1. viewing account information\n2. viewing fees\n3. searching books\n4. requesting books\n5. Log out")
     
         while True:
             choice_options = input("Choose 1, 2, 3, 4 or 5: ")
@@ -185,23 +109,29 @@ while True:
                     choice_edit = input ("Choose 1, 2, 3, 4, 5 or 6: ")
 
                     if choice_edit == "1":
-                        update_user(user, "Name", get_name())
+                        user_data.update_user(CSV_PATH_LOGIN, FIELDNAMES_LOGIN, user, "Name", user_data.get_name())
                         break
 
                     elif choice_edit == "2":
-                        update_user(user, "Username", get_username(load_users(), user["UserID"]))
+                        user_data.update_user(CSV_PATH_LOGIN, FIELDNAMES_LOGIN, user, "Username", user_data.get_username(user_data.load_users(CSV_PATH_LOGIN), user["UserID"]))
                         break
             
                     elif choice_edit == "3":
-                        update_user(user, "Password", get_password())
-                        break
+                        password = getpass.getpass("Enter password: ", echo_char="*")
+
+                        if password == user["Password"]:
+                            user_data.update_user(CSV_PATH_LOGIN, FIELDNAMES_LOGIN, user, "Password", user_data.get_password())
+                            break
+
+                        else:
+                            print("Incorrect password")
 
                     elif choice_edit == "4":
-                        update_user(user, "Email", get_email(load_users(), user["UserID"]))
+                        user_data.update_user(CSV_PATH_LOGIN, FIELDNAMES_LOGIN, user, "Email", user_data.get_email(user_data.load_users(CSV_PATH_LOGIN), user["UserID"]))
                         break
 
                     elif choice_edit == "5":
-                        update_user(user, "Payment_Options", get_payment_options())
+                        user_data.update_user(CSV_PATH_LOGIN, FIELDNAMES_LOGIN, user, "Payment_Options", user_data.get_payment_options())
                         break
 
                     elif choice_edit == "6":
@@ -212,10 +142,40 @@ while True:
                     break
 
             #---Placeholder Options---
-            if choice_options == "2" or choice_options == "3" or choice_options == "4":
-                break
+        if choice_options == "2":
+            while True:
+                print("What do you want to do", user["Username"], "?\n"
+                      "1. View Fee Information\n2. Activate Notification\n3.Return to choice options")
 
-            if choice_options == "5":
-                print("logging out; return to choice")
-                logged_in = False
-                break
+                while True:
+                    choice_fees = input ("Choose 1, 2 or 3: ")
+
+                    if choice_fees == "1":
+                        print(f"User ID: {fees['UserID']}\n" f"Account Creation Date: {fees['Account_Creation_Date']}\n" 
+                              f"Anual Fee: {fees['Anual_Fee']}\n" f"Late Fee: {fees['Late_Fee']}\n" 
+                              f"Outstanding Amount: {fees['Outstanding_Amount']}\n" f"Discounts: {fees['Discounts']}\n")
+
+                    elif choice_fees == "2":
+                        print("Would you like to activate notifications for your fees?\n1.Yes\n2.No")
+                        choice_notifications = input ("Choose 1, or 2: ")
+
+                        if choice_notifications == "1":
+                            return
+
+                        elif choice_notifications == "2":
+                            print("Return to choice options")
+                            break
+
+                        elif choice_fees == "3":
+                            break
+
+                    if choice_fees == "3":
+                        print("Return to choice options")
+                        break
+                
+        if choice_options ==  "3" or choice_options == "4":
+            break
+
+        if choice_options == "5":
+            print("logging out; return to choice")
+            return

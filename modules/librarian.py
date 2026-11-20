@@ -1,19 +1,12 @@
 #---Import for the Code---
-import csv
 import getpass
+from modules import user_data
+from pathlib import Path
 
 #---Variables for the Code---
-CSV_PATH = "Projekt/Brugg---Team-D/data/Librarian_Login_data.csv"
+CSV_PATH = Path(__file__).resolve().parent.parent / "data" / "Librarian_Login_data.csv"
 
-#---Functions for the Code---
-def load_users():
-  with open(CSV_PATH, "r", newline="", encoding="utf-8") as file:
-    reader = csv.DictReader(file)
-    users = list(reader)
-  return users
-
-while True:
-#---Librarian Login---
+def libarian_login():
     while True:
         print("Do you want to log in?")
         print("1. YES")
@@ -31,7 +24,7 @@ while True:
             librarian_ID = input("Enter ID: ").strip().lower()
             password = getpass.getpass("Enter password: ", echo_char="*")
 
-            users = load_users()
+            users = user_data.load_users(CSV_PATH)
 
             logged_in = False
 
@@ -48,8 +41,10 @@ while True:
                 break
 
         elif choice == "2":
-            break
+            return
 
         elif choice == "3":
             print("Please contact your admin.")
-            break
+            return
+
+#Menu Options: Add Books, Update Books, delete Books, search books
