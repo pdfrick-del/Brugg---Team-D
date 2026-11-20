@@ -1,6 +1,7 @@
 import csv
-CATALOG_FILE = "fictional_books_catalog.csv"
+from pathlib import Path
 
+CATALOG_FILE = "data/fictional_books_catalog.csv"
 
 def add_book():
 
@@ -39,7 +40,12 @@ def add_book():
         reader = csv.DictReader(file)
         books = list(reader)
 
-    sr_no = len(books) + 1
+    serial_numbers = [
+        int(book["Sr_No"])
+        for book in books
+        if book.get("Sr_No", "").isdigit()
+    ]
+    sr_no = max(serial_numbers, default=0) + 1
 
     # AC1 - Add Book
     with open(CATALOG_FILE, "a", newline="", encoding="utf-8") as file:
@@ -178,32 +184,39 @@ def view_catalog():
 
 # Main Menu
 
-while True:
+def main():
+    while True:
+        print("===== LIBRARY MENU =====")
+        print("1. Add Book")
+        print("2. Update Book")
+        print("3. Delete Book")
+        print("4. View Catalog")
+        print("5. Exit")
 
-    print("===== LIBRARY MENU =====")
-    print("1. Add Book")
-    print("2. Update Book")
-    print("3. Delete Book")
-    print("4. View Catalog")
-    print("5. Exit")
+        try:
+            choice = input("Enter choice: ")
+        except EOFError:
+            print("Input ended.")
+            break
 
-    choice = input("Enter choice: ")
+        try:
+            if choice == "1":
+                add_book()
+            elif choice == "2":
+                update_book()
+            elif choice == "3":
+                delete_book()
+            elif choice == "4":
+                view_catalog()
+            elif choice == "5":
+                print("Goodbye")
+                break
+            else:
+                print("Invalid choice")
+        except EOFError:
+            print("Input ended.")
+            break
 
-    if choice == "1":
-        add_book()
 
-    elif choice == "2":
-        update_book()
-
-    elif choice == "3":
-        delete_book()
-
-    elif choice == "4":
-        view_catalog()
-
-    elif choice == "5":
-        print("Goodbye")
-        break
-
-    else:
-        print("Invalid choice")
+if __name__ == "__main__":
+    main()
