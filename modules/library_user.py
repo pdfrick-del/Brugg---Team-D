@@ -173,7 +173,10 @@ def libary_user_menu(user, fees):
                         print("Return to choice options")
                         break
                 
-        if choice_options ==  "3" or choice_options == "4":
+        if choice_options ==  "3":
+            break
+
+        if choice_options ==  "4":
             break
 
         if choice_options == "5":
