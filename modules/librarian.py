@@ -46,3 +46,5 @@ def libarian_login():
         elif choice == "3":
             print("Please contact your admin.")
             return
+
+#Menu Options: Add Books, Update Books, delete Books, search books
