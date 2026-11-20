@@ -280,26 +280,6 @@ As a library user, I want to view my membership fees so that I know which I have
 - When the program starts and detects that a library user has an account for at least 5 years.
 - Then the system applies a discount to all upcoming membership fees, ensuring that each fee receives the discount only once.
 
-### User Story 7: Requesting books - Patrick:
-
-As a library user, I want to request new books so that they can be added to the online library and I can borrow them.
-
-#### AC 1: Book request form
-- Given a library user is logged in.
-- When he chooses the option "request books".
-- Then the system shows him a form where he can add the necessary book information: ISBN, title, author, edition, and publication date.
-
-#### AC2: Forwarding the Request
-- Given a library user has filled out a book request.
-- When the request is submitted.
-- Then the system forwards it to the librarians and shows a confirmation notification for the user.
-
-#### AC3: Information Message
-- Given a library user has submitted a book request.
-- When the user logs in and the program detects a request has been accepted and the book was added or the request was rejected.
-- Then it displays an information message to the user if no notification has been sent for that request yet.
-
-
 ## Program Structure 🏛️
 
 ### Decision and Control Flow Logic
