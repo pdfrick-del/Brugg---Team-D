@@ -156,7 +156,7 @@ Given a book has been deleted successfully
 When the librarian views the catalog
 Then the deleted book is no longer displayed in the catalog.
 
-#### Feature: Issue E-Book
+#### User Story 2: Feature: Issue E-Book
 
 #### AC1: User Must Be Registered and Logged In
  Given the user wants to issue an e-book
