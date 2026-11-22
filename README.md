@@ -155,39 +155,62 @@ Then the system displays the message: Book not found and no deletion occurs.
 Given a book has been deleted successfully
 When the librarian views the catalog
 Then the deleted book is no longer displayed in the catalog.
- 
-### User Story 3: Issue Books to Members- Amreen 
-As a librarian, I want to issue books to registered members so that borrowing transactions are recorded accurately and members do not exceed the maximum borrowing limit of five books.
-#### Feature: Issue Book
-#### AC1: Member Must Exist
-Given the member wants to issue a book
-When the member enters his Member ID
-Then the system verifies that the member exists in the library system and allows the issuing process to continue.
-#### AC2: Book Must Exist
-Given the member wants to issue a book
-When the member enters a Book name or ISBN
-Then the system verifies that the book exists in the catalog and allows the issuing process to continue.
-#### AC3: Enforce Borrowing Limit
-Given a valid member exists
-When the member tries to issue a book 
-Then the system checks the number of the member's active loans and if the member has fewer than five active loans, the book can be issued otherwise the issuing request is rejected and the system displays the message: Maximum borrowing limit reached.
+
+#### User Story 2: Feature: Issue E-Book
+
+#### AC1: User Must Be Registered and Logged In
+ Given the user wants to issue an e-book
+ When the user logs in using valid credentials
+ Then the system verifies the user's account and allows the e-book issuing process to continue.
+
+#### AC2: E-Book Must Exist
+ Given the user wants to issue an e-book
+ When the user selects or searches for an e-book by title, author, or ISBN
+ Then the system verifies that the e-book exists in the catalog and allows the issuing process to continue.
+
+#### AC3: E-Book Must Be Available
+ Given the user has selected an e-book
+ When the user requests to issue the e-book
+ Then the system checks whether the e-book is available and allows the issue request to proceed if access is available; otherwise, the system displays the message: E-book currently unavailable.
+
 #### AC4: Successful Issue Confirmation
-Given the book has been issued successfully
-When the issue process is completed
-Then the system displays: Book issued successfully.
-#### AC5: Create Borrowing Record
-Given all validation checks have passed
-When the book is issued successfully
-Then the system creates a borrowing record containing:
-•	Member ID
-•	Book ISBN
-•	Borrow Date
-•	Due Date (15 days from the borrow date)
-#### AC6: Member or Book Not Found
-Given the librarian initiates a book issue transaction
-When the Member ID or Book ISBN does not exist
-Then the system rejects the transaction and displays one of the following messages:Member not found or Book not found.
+ Given all validation checks have passed
+ When the e-book is issued successfully
+ Then the system displays: E-book issued successfully.
+
+#### AC5: Create E-Book Borrowing Record
+ Given the e-book has been issued successfully
+ When the issue process is completed
+ Then the system creates a borrowing record containing:
+
+User ID
+E-Book ISBN
+Issue Date
+Expiry Date (7 days from the issue date)
+
+#### AC6: Grant E-Book Access for 7 Days
+ Given the e-book has been issued successfully
+ When the borrowing record is created
+ Then the system grants the user access to read and download the e-book for 7 days from the issue date.
+
+#### AC7: Automatic Return After 7 Days
+ Given an e-book has reached its expiry date
+ When 7 days have elapsed since the issue date
+ Then the system automatically revokes access to the e-book and marks it as returned.
+
+#### AC8: Display Due Date
+ Given the e-book has been issued successfully
+ When the issuing process is completed
+ Then the system displays the issue date and the due date (7 days later) to the user.
+
+#### AC9: User or E-Book Not Found
+ Given the user initiates an e-book issue request
+ When the user account or e-book does not exist
+ Then the system rejects the request and displays one of the following messages:
+  User not found
+  E-book not found.
  
+
 ### User Story 4: Library User Login and Account Information - Patrick:
 
 As a library user, I want to select my user role and log in to my account so that I can access the system's features for a library user and view personal information.
