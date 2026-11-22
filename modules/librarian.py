@@ -67,16 +67,17 @@ def libarian_menu(user):
         if choice_options == "4. View Catalog":
             break
 
-        if choice_options == "5. Sort Books":
+        if choice_options == "5. Filter Books":
             break
 
-        if choice_options == "3. Filter Books":
+        if choice_options == "6. Sort Books":
             break
 
-        if choice_options == "4. ":
+        if choice_options == "7.Filter and Sort Books":
+
             break
 
-        if choice_options == "5. Sort Books":
+        if choice_options == "8. Exit":
             break
 
 
