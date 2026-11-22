@@ -21,4 +21,7 @@ while True:
             library_user.libary_user_menu(user, fees)
 
     if role == "2":
-        librarian.libarian_login()
+        user = librarian.libarian_login()
+
+        if user is not None:
+            librarian.libarian_menu(user)
