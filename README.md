@@ -156,56 +156,56 @@ Given a book has been deleted successfully
 When the librarian views the catalog
 Then the deleted book is no longer displayed in the catalog.
 
-#### User Story 2: Feature: Issue E-Book
+### User Story 1: Issue Books- Amreen
 
 #### AC1: User Must Be Registered and Logged In
- Given the user wants to issue an e-book
+ Given the user wants to issue a book
  When the user logs in using valid credentials
- Then the system verifies the user's account and allows the e-book issuing process to continue.
+ Then the system verifies the user's account and allows the book issuing process to continue.
 
-#### AC2: E-Book Must Exist
- Given the user wants to issue an e-book
- When the user selects or searches for an e-book by title, author, or ISBN
- Then the system verifies that the e-book exists in the catalog and allows the issuing process to continue.
+#### AC2: Book Must Exist
+ Given the user wants to issue a book
+ When the user selects or searches for a book by title, author or ISBN
+ Then the system verifies that the book exists in the catalog and allows the issuing process to continue.
 
-#### AC3: E-Book Must Be Available
- Given the user has selected an e-book
- When the user requests to issue the e-book
- Then the system checks whether the e-book is available and allows the issue request to proceed if access is available; otherwise, the system displays the message: E-book currently unavailable.
+#### AC3: Book Must Be Available
+ Given the user has selected an book
+ When the user requests to issue the book
+ Then the system checks whether the book is available and allows the issue request to proceed if access is available; otherwise, the system displays the message: Book currently unavailable.
 
 #### AC4: Successful Issue Confirmation
  Given all validation checks have passed
- When the e-book is issued successfully
- Then the system displays: E-book issued successfully.
+ When the book is issued successfully
+ Then the system displays: Book issued successfully.
 
-#### AC5: Create E-Book Borrowing Record
- Given the e-book has been issued successfully
+#### AC5: Create Book Borrowing Record
+ Given the book has been issued successfully
  When the issue process is completed
  Then the system creates a borrowing record containing:
 
 User ID
-E-Book ISBN
+Book ISBN
 Issue Date
 Expiry Date (7 days from the issue date)
 
-#### AC6: Grant E-Book Access for 7 Days
- Given the e-book has been issued successfully
+#### AC6: Grant Book Access for 7 Days
+ Given the book has been issued successfully
  When the borrowing record is created
- Then the system grants the user access to read and download the e-book for 7 days from the issue date.
+ Then the system grants the user access to read and download the book for 7 days from the issue date.
 
 #### AC7: Automatic Return After 7 Days
- Given an e-book has reached its expiry date
+ Given an book has reached its expiry date
  When 7 days have elapsed since the issue date
- Then the system automatically revokes access to the e-book and marks it as returned.
+ Then the system automatically revokes access to the book and marks it as returned.
 
 #### AC8: Display Due Date
- Given the e-book has been issued successfully
+ Given the book has been issued successfully
  When the issuing process is completed
  Then the system displays the issue date and the due date (7 days later) to the user.
 
-#### AC9: User or E-Book Not Found
- Given the user initiates an e-book issue request
- When the user account or e-book does not exist
+#### AC9: User or Book Not Found
+ Given the user initiates an book issue request
+ When the user account or book does not exist
  Then the system rejects the request and displays one of the following messages:
   User not found
   E-book not found.
