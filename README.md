@@ -53,55 +53,71 @@ In this project a database will be used:
 
 ### User Stories 📖
 
-### User Story 1: Filter and Sort Books- Amreen
-As a librarian, I want to filter books by title, author name, publication year and  genre and sort the filtered results by these attributes so that I can quickly locate specific books and organize the displayed catalog without changing the stored book information.
-### Acceptance Criteria
-#### AC1: Filter by Title
-Given a list of books exists in the catalog
-When the librarian enters a title or part of a title as a filter
-Then only books with matching titles are displayed.
-#### AC2: Filter by Author
-Given books with different authors exist
-When the librarian enters an author name as a filter
-Then only books written by the matching author are displayed.
-#### AC3: Filter by Publication Year
-Given books have publication years
-When the librarian enters a publication year as a filter
-Then only books published in that year are displayed.
-#### AC4: Filter by Genre
-Given books belong to multiple genres
-When the librarian selects a genre filter
-Then only books belonging to that genre are displayed.
-#### AC5: Sort by Title
-Given one or more books are displayed
-When the librarian selects "Sort by Title"
-Then the displayed books are ordered alphabetically from A-Z by title.
-#### AC6: Sort by Author
-Given one or more books are displayed
-When the librarian selects "Sort by Author"
-Then the displayed books are ordered alphabetically A-Z by author name.
-#### AC7: Sort by Publication Year
-Given one or more books are displayed
-When the librarian selects "Sort by Publication Year"
-Then the displayed books are ordered from oldest to newest.
-#### AC8: Sort by Genre
-Given one or more books are displayed
-When the librarian selects "Sort by Genre"
-Then the displayed books are ordered alphabetically by genre.
-#### AC9: Filter and Sort Combined
-Given a filter has been applied
-When the librarian selects a sorting option
-Then only the filtered books are displayed and sorted according to the selected attribute.
-#### AC10: No Matching Results
-Given books exist in the catalog
-When the applied filter does not match any books
-Then the system displays the message: No matching books found
-#### AC11: Empty Catalog Handling
-Given no books exist in the catalog
-When the librarian requests filtering or sorting
-Then the system displays the message:No books available
- 
-### User Story 2: Manage Books- Amreen 
+### User Story 1: Library User Login and Account Information - Patrick:
+
+As a library user, I want to select my user role and log in to my account so that I can access the system's features for a library user and view personal information.
+
+#### AC1: Selecting the Library User role
+- Given the program has started.
+- When the user selects “Library User” as a user role.
+- Then the system starts the login process required for the selected user role.
+
+#### AC2: Creating a new account
+- Given a library user is in the login process.
+- When they select the option to create a new account.
+- Then the system allows the user to enter their required username, email address, password, and payment information. If all required information is valid, the system creates and saves the new account.
+
+#### AC3: Entering login credentials
+- Given a library user is in the login process.
+- When they select the option to log in.
+- Then the system allows them to type in their e-mail and password.
+
+#### AC4: Verification of login credentials
+- Given a library user is entering their login credentials to log in.
+- When the library user has submitted their e-mail and password.
+- Then the system verifies these credentials; if correct, the user is logged in, else they get an error message and get back to the start of the login for the library user, where they can choose between logging in and creating an account.
+
+#### AC5: Showing Options
+- Given a library user is successfully logged in.
+- Then the system displays a menu with the following options: viewing account information, viewing fees, searching for books to download, and requesting books. 
+
+#### AC6: View and edit account information
+- Given a library user is successfully logged in.
+- When the library user decides on the option “view account”.
+- Then the system shows them their UserID, Name, Password but censored, Username, Email, and saved payment information. The user can decide to edit this information and save it, except the UserID.
+- And to change their password, the user must first enter their current password.
+
+#### AC7: Forgotten Login Credentials
+- Given a library user is in the login process.
+- When the user selects the option “forgot login credentials”.
+- Then the system displays the message: "Please contact your admin."
+
+### User Story 2: Login librarian - Patrick:
+
+As a librarian, I want to select my user role and log in to my account so that I can access the system's features for a librarian. The librarian account is already set up when the application starts.
+
+#### AC1: Selecting the librarian role
+- Given the program has started.
+- When the user selects “Librarian” as a user role.
+- Then the system starts the login process required for the selected user role.
+
+#### AC2: Forgotten account information or new account
+- Given a librarian is in the login process
+- When they select "Forgot your account information or don't have an account?"
+- Then the system displays the message: "Please contact your admin."
+
+#### AC3: Entering login credentials
+- Given a librarian is in the login process
+- When they select "log in"
+- Then the system allows them to enter their ID and password.
+
+#### AC4: Verification of login credentials 
+- Given a librarian is entering their login credentials to log in.
+- When the librarian has submitted their ID and password.
+- Then the system verifies these credentials; if correct, the user is logged in, else they get an error message and get back to the start of the login for the librarian.
+
+### User Story 3: Manage Books- Amreen 
+
 As a librarian, I want to add, update, and delete book records so that the library catalog remains accurate, up-to-date, and available for members to search, borrow, and return books.
 #### Feature A: Add Book
 #### AC1: Add a New Book
@@ -156,7 +172,56 @@ Given a book has been deleted successfully
 When the librarian views the catalog
 Then the deleted book is no longer displayed in the catalog.
 
-### User Story 1: Issue Books- Amreen
+### User Story 4: Filter and Sort Books- Amreen
+
+As a librarian, I want to filter books by title, author name, publication year and  genre and sort the filtered results by these attributes so that I can quickly locate specific books and organize the displayed catalog without changing the stored book information.
+### Acceptance Criteria
+#### AC1: Filter by Title
+Given a list of books exists in the catalog
+When the librarian enters a title or part of a title as a filter
+Then only books with matching titles are displayed.
+#### AC2: Filter by Author
+Given books with different authors exist
+When the librarian enters an author name as a filter
+Then only books written by the matching author are displayed.
+#### AC3: Filter by Publication Year
+Given books have publication years
+When the librarian enters a publication year as a filter
+Then only books published in that year are displayed.
+#### AC4: Filter by Genre
+Given books belong to multiple genres
+When the librarian selects a genre filter
+Then only books belonging to that genre are displayed.
+#### AC5: Sort by Title
+Given one or more books are displayed
+When the librarian selects "Sort by Title"
+Then the displayed books are ordered alphabetically from A-Z by title.
+#### AC6: Sort by Author
+Given one or more books are displayed
+When the librarian selects "Sort by Author"
+Then the displayed books are ordered alphabetically A-Z by author name.
+#### AC7: Sort by Publication Year
+Given one or more books are displayed
+When the librarian selects "Sort by Publication Year"
+Then the displayed books are ordered from oldest to newest.
+#### AC8: Sort by Genre
+Given one or more books are displayed
+When the librarian selects "Sort by Genre"
+Then the displayed books are ordered alphabetically by genre.
+#### AC9: Filter and Sort Combined
+Given a filter has been applied
+When the librarian selects a sorting option
+Then only the filtered books are displayed and sorted according to the selected attribute.
+#### AC10: No Matching Results
+Given books exist in the catalog
+When the applied filter does not match any books
+Then the system displays the message: No matching books found
+#### AC11: Empty Catalog Handling
+Given no books exist in the catalog
+When the librarian requests filtering or sorting
+Then the system displays the message:No books available
+ 
+### User Story 5 : Issue Books- Amreen
 
 #### AC1: User Must Be Registered and Logged In
  Given the user wants to issue a book
@@ -210,70 +275,6 @@ Expiry Date (7 days from the issue date)
   User not found
   E-book not found.
  
-
-### User Story 4: Library User Login and Account Information - Patrick:
-
-As a library user, I want to select my user role and log in to my account so that I can access the system's features for a library user and view personal information.
-
-#### AC1: Selecting the Library User role
-- Given the program has started.
-- When the user selects “Library User” as a user role.
-- Then the system starts the login process required for the selected user role.
-
-#### AC2: Creating a new account
-- Given a library user is in the login process.
-- When they select the option to create a new account.
-- Then the system allows the user to enter their required username, email address, password, and payment information. If all required information is valid, the system creates and saves the new account.
-
-#### AC3: Entering login credentials
-- Given a library user is in the login process.
-- When they select the option to log in.
-- Then the system allows them to type in their e-mail and password.
-
-#### AC4: Verification of login credentials
-- Given a library user is entering their login credentials to log in.
-- When the library user has submitted their e-mail and password.
-- Then the system verifies these credentials; if correct, the user is logged in, else they get an error message and get back to the start of the login for the library user, where they can choose between logging in and creating an account.
-
-#### AC5: Showing Options
-- Given a library user is successfully logged in.
-- Then the system displays a menu with the following options: viewing account information, viewing fees, searching for books to download, and requesting books. 
-
-#### AC6: View and edit account information
-- Given a library user is successfully logged in.
-- When the library user decides on the option “view account”.
-- Then the system shows them their UserID, Name, Password but censored, Username, Email, and saved payment information. The user can decide to edit this information and save it, except the UserID.
-- And to change their password, the user must first enter their current password.
-
-#### AC7: Forgotten Login Credentials
-- Given a library user is in the login process.
-- When the user selects the option “forgot login credentials”.
-- Then the system displays the message: "Please contact your admin."
-
-### User Story 5: Login librarian - Patrick:
-
-As a librarian, I want to select my user role and log in to my account so that I can access the system's features for a librarian. The librarian account is already set up when the application starts.
-
-#### AC1: Selecting the librarian role
-- Given the program has started.
-- When the user selects “Librarian” as a user role.
-- Then the system starts the login process required for the selected user role.
-
-#### AC2: Forgotten account information or new account
-- Given a librarian is in the login process
-- When they select "Forgot your account information or don't have an account?"
-- Then the system displays the message: "Please contact your admin."
-
-#### AC3: Entering login credentials
-- Given a librarian is in the login process
-- When they select "log in"
-- Then the system allows them to enter their ID and password.
-
-#### AC4: Verification of login credentials 
-- Given a librarian is entering their login credentials to log in.
-- When the librarian has submitted their ID and password.
-- Then the system verifies these credentials; if correct, the user is logged in, else they get an error message and get back to the start of the login for the librarian.
-
 ### User Story 6: Membership Fees - Patrick:
 
 As a library user, I want to view my membership fees so that I know which I have paid lately and which are still outstanding.
