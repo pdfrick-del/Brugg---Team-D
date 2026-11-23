@@ -599,5 +599,5 @@ Sr_No,Book_Name,Author,Genre,PageCount_DurationMinutes,Publication_Year,ISBN_Num
 599,Lost Empire 599,Olivia Collins,Literary Fiction,768,2007,9781000000599,Audiobook
 600,Star Frontier 600,Victoria White,Technology,158,1980,9781000000600,Audiobook
 601,Twilight Saga:New Moon,Stephanie Meyer,Fiction,267,2005,6789,E-Book
-602,Hera Pheri,Piryadarshan,Thriller Comedy,25,2001,123456,E-Books
-603,Harry Potter and the Prisoner of Azkaban,J.K.Rowling,Fantasy,350,1999,978156666321\E-Book
+603,Harry Potter and the Prisoner of Azkaban,J.K.Rowling,Fantasy,350,1999,978156666321\E-Book,
+605,Zürich Memories,Hellboy,Travel,120,2026,12345678,E-Books

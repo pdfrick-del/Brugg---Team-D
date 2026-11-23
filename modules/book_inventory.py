@@ -1,7 +1,8 @@
 import csv
 from pathlib import Path
 
-CATALOG_FILE = "data/fictional_books_catalog.csv"
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+CATALOG_FILE = PROJECT_ROOT / "data" / "fictional_books_catalog.csv"
 
 def add_book():
 

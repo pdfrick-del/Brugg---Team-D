@@ -3,7 +3,7 @@ import getpass
 import csv
 from datetime import date
 from pathlib import Path
-from modules import user_data
+from modules import book_lending, user_data
 
 #---Variables for the Code---
 CSV_PATH_LOGIN = Path(__file__).resolve().parent.parent / "data" / "Library_User_Login_data.csv"
@@ -87,12 +87,13 @@ def libary_user_login():
 def libary_user_menu(user, fees):
     while True:
         print("What do you want to do", user["Username"], "?\n"
-              "1. viewing account information\n2. viewing fees\n3. searching books\n4.Issued Books \n5.Log out")
+              "1. viewing account information\n2. viewing fees\n3. searching books\n"
+              "4. Issued Books\n5. Issue a book\n6. Log out")
     
         while True:
-            choice_options = input("Choose 1, 2, 3, 4 or 5: ")
+            choice_options = input("Choose 1, 2, 3, 4, 5 or 6: ")
 
-            if choice_options in ("1", "2", "3", "4", "5"):
+            if choice_options in ("1", "2", "3", "4", "5", "6"):
                 break
 
             print("Error; return to options.")
@@ -177,8 +178,11 @@ def libary_user_menu(user, fees):
             break
 
         if choice_options ==  "4":
-            break
+            book_lending.display_issued_books(user)
 
         if choice_options == "5":
+            book_lending.issue_book(user)
+
+        if choice_options == "6":
             print("logging out; return to choice")
             return

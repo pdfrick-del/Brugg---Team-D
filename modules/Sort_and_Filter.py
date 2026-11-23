@@ -1,6 +1,9 @@
 import csv
+from pathlib import Path
 
-CATALOG_FILE = "data/fictional_books_catalog.csv"
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+CATALOG_FILE = PROJECT_ROOT / "data" / "fictional_books_catalog.csv"
+
 
 
 # ==========================
@@ -28,15 +31,34 @@ def display_books(books):
         print("No matching books found")
         return
 
-    for book in books:
+    columns = [
+        ("Book Name", "Book_Name"),
+        ("Author", "Author"),
+        ("Genre", "Genre"),
+        ("Year", "Publication_Year"),
+        ("ISBN", "ISBN_Number"),
+        ("Book Type", "Book_Type"),
+    ]
 
-        print("\n-----------------------------------")
-        print("Book Name:", book["Book_Name"])
-        print("Author:", book["Author"])
-        print("Genre:", book["Genre"])
-        print("Publication Year:", book["Publication_Year"])
-        print("ISBN:", book["ISBN_Number"])
-        print("Book Type:", book["Book_Type"])
+    widths = [
+        max(len(label), *(len(str(book.get(field, ""))) for book in books))
+        for label, field in columns
+    ]
+
+    header = " | ".join(
+        label.ljust(width)
+        for (label, _), width in zip(columns, widths)
+    )
+    separator = "-+-".join("-" * width for width in widths)
+
+    print(header)
+    print(separator)
+
+    for book in books:
+        print(" | ".join(
+            str(book.get(field, "")).ljust(width)
+            for (_, field), width in zip(columns, widths)
+        ))
 
 
 # ==========================
@@ -113,11 +135,10 @@ def sort_by_title(books):
 
 def sort_by_author(books):
 
-    books = sorted(
+    return sorted(
         books,
         key=lambda book: book["Author"].lower()
     )
-    display_books(books)
 
 
 def sort_by_year(books):
@@ -126,7 +147,6 @@ def sort_by_year(books):
         books,
         key=lambda book: int(book["Publication_Year"])
     )
-    display_books(books)
 
 def sort_by_genre(books):
 
@@ -134,7 +154,6 @@ def sort_by_genre(books):
         books,
         key=lambda book: book["Genre"].lower()
     )
-    display_books(books)
 
 
 # ==========================
