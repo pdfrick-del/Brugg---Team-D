@@ -9,7 +9,7 @@ from modules import book_lending, user_data
 CSV_PATH_LOGIN = Path(__file__).resolve().parent.parent / "data" / "Library_User_Login_data.csv"
 CSV_PATH_FEES = Path(__file__).resolve().parent.parent / "data" / "Library_User_Fees_data.csv"
 FIELDNAMES_LOGIN = ["UserID", "Name", "Username", "Password", "Role", "Email", "Payment_Options"]
-FIELDNAMES_FEES = ["UserID", "Account_Creation_Date"]
+FIELDNAMES_FEES = ["UserID", "Account_Creation_Date", "Anual_Fee", "Late_Fee", "Outstanding_Amount", "Discounts", "Notifications"]
 
 #---Libary User Login---
 def libary_user_login():
@@ -86,6 +86,16 @@ def libary_user_login():
 #---Menu---
 def libary_user_menu(user, fees):
     while True:
+
+        while True:
+            if f"Notifications: {fees['Notifications']} == YES":
+                if float(fees['Outstanding_Amount']) > 0:
+                    print(f"You have unpaid fees: CHF {fees['Outstanding_Amount']}.-")
+                    break
+                else:
+                    break
+
+
         print("What do you want to do", user["Username"], "?\n"
               "1. viewing account information\n2. viewing fees\n3. searching books\n"
               "4. Issued Books\n5. Issue a book\n6. Log out")
@@ -100,6 +110,7 @@ def libary_user_menu(user, fees):
     
         if choice_options == "1":
             while True:
+
                 print(f"User ID: {user['UserID']}\n" f"Name: {user['Name']}\n" f"Username: {user['Username']}\n"
                       f"Password: {"*" * len(user['Password'])}\n" f"Role: {user['Role']}\n" f"Email: {user['Email']}\n" f"Payment Options: {user['Payment_Options']}")
 
@@ -161,10 +172,11 @@ def libary_user_menu(user, fees):
                         choice_notifications = input ("Choose 1, or 2: ")
 
                         if choice_notifications == "1":
-                            return
+                            user_data.update_user(CSV_PATH_FEES, FIELDNAMES_FEES, user, "Notifications", "YES" )
+                            break
 
                         elif choice_notifications == "2":
-                            print("Return to choice options")
+                            user_data.update_user(CSV_PATH_FEES, FIELDNAMES_FEES, user, "Notifications", "NO" )
                             break
 
                         elif choice_fees == "3":
@@ -186,3 +198,5 @@ def libary_user_menu(user, fees):
         if choice_options == "6":
             print("logging out; return to choice")
             return
+
+        

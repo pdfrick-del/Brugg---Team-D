@@ -38,3 +38,5 @@ def late_fee(outstanding_amount, anual_fee):
 def adding_current_late_fee(outstanding_amount, late_fee):
     outstanding_amount = outstanding_amount + late_fee
     return outstanding_amount
+
+def update_user_fees(fees)

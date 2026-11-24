@@ -1,4 +1,4 @@
-UserID,Account_Creation_Date,Anual_Fee,Late_Fee,Outstanding_Amount,Discounts
+UserID,Account_Creation_Date,Anual_Fee,Late_Fee,Outstanding_Amount,Discounts,Notifications
 U001,2015-08-08
 U002,2022-07-23
 U003,2009-12-31
@@ -21,4 +21,4 @@ U019,2025-09-11
 U020,2024-12-25
 U021,2020-01-06
 U022,2026-05-04
-U023,2026-11-18
+U023,2026-11-18,,,100,,,YES
