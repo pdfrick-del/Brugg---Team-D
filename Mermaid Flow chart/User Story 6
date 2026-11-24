@@ -1,3 +1,4 @@
+``` mermaid
 flowchart TD
 
     A([User Logged In])
@@ -39,3 +40,4 @@ flowchart TD
     P --> Q[Ensure Discount Applied Only Once]
 
     Q --> R([End])
+```
