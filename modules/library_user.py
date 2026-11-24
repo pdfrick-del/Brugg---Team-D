@@ -67,14 +67,20 @@ def libary_user_login():
                 "Password": new_password,
                 "Role": "Library User",
                 "Email": new_email,
-                "Payment_Options": payment_option,
+                "Payment_Options": payment_option
             })
 
             user_data.save_users(CSV_PATH_LOGIN, users, FIELDNAMES_LOGIN)
             
             fees.append({
                 "UserID": new_user_id,
-                "Account_Creation_Date": registration_date
+                "Account_Creation_Date": registration_date,
+                "Anual_Fee": 50,
+                "Late_Fee": 0,
+                "Outstanding_Amount": 50,
+                "Discounts": 0,
+                "Notifications" : "NO",
+                "Last_Update": registration_date
             })
 
             user_data.save_users(CSV_PATH_FEES, fees, FIELDNAMES_FEES)
@@ -110,8 +116,8 @@ def libary_user_menu(user, fees):
                 if float(fees['Outstanding_Amount']) > 0:
                     print(f"You have unpaid fees: CHF{fees['Outstanding_Amount']}.-")
                     break
-                else:
-                    break
+            else:
+                break
 
 
         print("What do you want to do", user["Username"], "?\n"
@@ -184,6 +190,7 @@ def libary_user_menu(user, fees):
                         print(f"User ID: {fees['UserID']}\n" f"Account Creation Date: {fees['Account_Creation_Date']}\n" 
                               f"Anual Fee: {fees['Anual_Fee']}\n" f"Late Fee: {fees['Late_Fee']}\n" 
                               f"Outstanding Amount: {fees['Outstanding_Amount']}\n" f"Discounts: {fees['Discounts']}\n")
+                        break
 
                     elif choice_fees == "2":
                         print("Would you like to activate notifications for your fees?\n1.Yes\n2.No")
@@ -197,12 +204,12 @@ def libary_user_menu(user, fees):
                             user_data.update_user(CSV_PATH_FEES, FIELDNAMES_FEES, user, "Notifications", "NO" )
                             break
 
-                        elif choice_fees == "3":
-                            break
-
-                    if choice_fees == "3":
-                        print("Return to choice options")
+                    elif choice_fees == "3":
                         break
+
+                if choice_fees == "3":
+                    print("Return to choice options")
+                    break
                 
         if choice_options ==  "3":
             break
