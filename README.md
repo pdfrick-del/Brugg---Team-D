@@ -291,7 +291,7 @@ As a library user, I want to view my membership fees so that I know which I have
 
 #### AC3: Sending Notifications
 - Given a library user has activated notifications for membership fees.
-- When the libary user logs in and the program detects an overdue unpaid membership fee for that user.
+- When the libary user logs in and the program detects an outstanding amount for that user.
 - Then the system displays a reminder message to the user as soon as they are loged in.
 
 #### AC4: Late fees
