@@ -1,3 +1,4 @@
+``` mermaid
 flowchart TD
 
     A([Catalog Opened])
@@ -24,6 +25,7 @@ flowchart TD
     K{Matching Books Found?}
 
     K -->|No| L[Display 'No Matching Books Found']
+```
     K -->|Yes| M[Display Filtered Results]
 
     M --> N{Sort Results?}
