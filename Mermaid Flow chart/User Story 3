@@ -1,0 +1,48 @@
+flowchart TD
+
+    A([Librarian Logged In])
+
+    A --> B{Select Action}
+
+    %% Add Book
+    B -->|Add Book| C[Enter Book Details]
+
+    C --> D{All Required Fields Filled?}
+
+    D -->|No| E[Display 'Field/s is Empty']
+    E --> B
+
+    D -->|Yes| F{ISBN Already Exists?}
+
+    F -->|Yes| G[Display 'ISBN Already Exists']
+    G --> B
+
+    F -->|No| H[Save Book]
+    H --> I[Display 'Book Added Successfully']
+    I --> B
+
+    %% Update Book
+    B -->|Update Book| J[Select Book]
+
+    J --> K{Book Exists?}
+
+    K -->|No| L[Display 'Book Not Found']
+    L --> B
+
+    K -->|Yes| M[Update Book Information]
+    M --> N[Save Changes]
+    N --> O[Display 'Book Updated Successfully']
+    O --> B
+
+    %% Delete Book
+    B -->|Delete Book| P[Select Book]
+
+    P --> Q{Book Exists?}
+
+    Q -->|No| R[Display 'Book Not Found']
+    R --> B
+
+    Q -->|Yes| S[Delete Book]
+    S --> T[Display 'Book Has Been Deleted']
+    T --> U[Refresh Catalog]
+    U --> B

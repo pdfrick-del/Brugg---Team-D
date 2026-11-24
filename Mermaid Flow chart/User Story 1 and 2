@@ -1,0 +1,63 @@
+flowchart TD
+
+    A([Start]) --> B{Select Role}
+
+    %% Library User Login
+    B -->|Library User| C[Library User Login Menu]
+
+    C -->|Create Account| D[Enter Username, Email, Password, Payment Info]
+    D --> E{Information Valid?}
+    E -->|No| F[Display Validation Error]
+    F --> C
+    E -->|Yes| G[Create and Save Account]
+    G --> C
+
+    C -->|Log In| H[Enter Email and Password]
+    H --> I{Credentials Correct?}
+
+    I -->|No| J[Display Error Message]
+    J --> C
+
+    I -->|Yes| K[User Logged In]
+
+    C -->|Forgot Login Credentials| L[Display 'Please Contact Your Admin']
+    L --> C
+
+    %% User Menu
+    K --> M[Display User Menu]
+
+    M --> N[View Account Information]
+    M --> O[View Membership Fees]
+    M --> P[Search Books]
+    M --> Q[Request Books]
+
+    %% Account Information
+    N --> R[Display User ID, Name, Username, Email, Payment Info]
+    R --> S{Edit Information?}
+
+    S -->|No| M
+    S -->|Yes| T[Update Details]
+
+    T --> U{Changing Password?}
+    U -->|No| V[Save Changes]
+    U -->|Yes| W[Enter Current Password]
+    W --> V
+
+    V --> M
+
+    %% Librarian Login
+    B -->|Librarian| X[Librarian Login Menu]
+
+    X -->|Log In| Y[Enter Librarian ID and Password]
+    Y --> Z{Credentials Correct?}
+
+    Z -->|Yes| AA[Librarian Logged In]
+    Z -->|No| AB[Display Error Message]
+    AB --> X
+
+    X -->|Forgot Account Information| AC[Display 'Please Contact Your Admin']
+    AC --> X
+
+    AA --> AD[Access Librarian Features]
+
+    AD --> AE([End])

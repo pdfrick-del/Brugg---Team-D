@@ -1,0 +1,39 @@
+flowchart TD
+
+    A([Start Issue Process])
+
+    A --> B{User Logged In?}
+
+    B -->|No| C[Display 'User Not Found']
+    B -->|Yes| D[Search or Select Book]
+
+    D --> E{Book Exists?}
+
+    E -->|No| F[Display 'E-Book Not Found']
+    E -->|Yes| G{Book Available?}
+
+    G -->|No| H[Display 'Book Currently Unavailable']
+
+    G -->|Yes| I[Issue Book]
+
+    I --> J[Create Borrowing Record]
+
+    J --> K[Store User ID]
+    K --> L[Store ISBN]
+    L --> M[Store Issue Date]
+    M --> N[Set Expiry Date = Issue Date + 7 Days]
+
+    N --> O[Grant Read & Download Access]
+
+    O --> P[Display Issue Date and Due Date]
+
+    P --> Q[Display 'Book Issued Successfully']
+
+    Q --> R{7 Days Elapsed?}
+
+    R -->|No| R
+    R -->|Yes| S[Revoke Access]
+
+    S --> T[Mark Book as Returned]
+
+    T --> U([End])
