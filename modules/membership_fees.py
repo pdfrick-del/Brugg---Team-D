@@ -8,6 +8,15 @@ CSV_PATH_FEES = Path(__file__).resolve().parent.parent / "data" / "Library_User_
 ANUAL_FEE = 50
 
 #---Functions for the Code---
+def update_membership_fees(fees):
+    today = date.today
+    registration_date = date.fromisoformat(fees["Account_Creation_Date"])
+    last_update = date.fromisoformat(fees["Last_Update"])
+    
+    anual_date = date(today.year, registration_date.month, 1)
+
+    return last_update < anual_date <= today
+
 def calculate_discount(registration_date):
     today = date.today()
     years = today.year - registration_date.year
@@ -38,5 +47,3 @@ def late_fee(outstanding_amount, anual_fee):
 def adding_current_late_fee(outstanding_amount, late_fee):
     outstanding_amount = outstanding_amount + late_fee
     return outstanding_amount
-
-def update_user_fees(fees)

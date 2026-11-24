@@ -3,13 +3,13 @@ import getpass
 import csv
 from datetime import date
 from pathlib import Path
-from modules import book_lending, user_data
+from modules import book_lending, user_data, membership_fees
 
 #---Variables for the Code---
 CSV_PATH_LOGIN = Path(__file__).resolve().parent.parent / "data" / "Library_User_Login_data.csv"
 CSV_PATH_FEES = Path(__file__).resolve().parent.parent / "data" / "Library_User_Fees_data.csv"
 FIELDNAMES_LOGIN = ["UserID", "Name", "Username", "Password", "Role", "Email", "Payment_Options"]
-FIELDNAMES_FEES = ["UserID", "Account_Creation_Date", "Anual_Fee", "Late_Fee", "Outstanding_Amount", "Discounts", "Notifications"]
+FIELDNAMES_FEES = ["UserID", "Account_Creation_Date", "Anual_Fee", "Late_Fee", "Outstanding_Amount", "Discounts", "Notifications", "Last_Update"]
 
 #---Libary User Login---
 def libary_user_login():
@@ -85,10 +85,24 @@ def libary_user_login():
 
 #---Menu---
 def libary_user_menu(user, fees):
+    #---Review of Fees---
+    if membership_fees.update_membership_fees(fees):
+        membership_fees.calculate_discount(fees["Account_Creation_Date"])
+        membership_fees.calculating_anual_fee(fees["Account_Creation_Date"])
+        membership_fees.adding_current_anual_fee(fees["Outstanding_Amount"], fees["Anual_Fee"])
+        membership_fees.late_fee(fees["Outstanding_Amount"], fees["Anual_Fee"])
+        membership_fees.adding_current_late_fee(fees["Outstanding_Amount"], fees["Late_Fee"])
+
     while True:
-        if fees['Notifications'] == YES:
-            if float(fees['Outstanding_Amount']) > 0:
-                print(f"You have unpaid fees: CHF {fees['Outstanding_Amount']}.-")
+
+        while True:
+            if fees['Notifications'] == "YES":
+                if float(fees['Outstanding_Amount']) > 0:
+                    print(f"You have unpaid fees: CHF{fees['Outstanding_Amount']}.-")
+                    break
+                else:
+                    break
+
 
         print("What do you want to do", user["Username"], "?\n"
               "1. viewing account information\n2. viewing fees\n3. searching books\n"
