@@ -1,3 +1,5 @@
+``` mermaid
+
 flowchart TD
 
     A([Librarian Logged In])
@@ -46,3 +48,4 @@ flowchart TD
     S --> T[Display 'Book Has Been Deleted']
     T --> U[Refresh Catalog]
     U --> B
+```
