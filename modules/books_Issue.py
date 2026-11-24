@@ -1,6 +1,7 @@
 import csv
-from datetime import date, timedelta
+from datetime import date
 from pathlib import Path
+from modules import Books_Due_Date
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 USER_FILE = PROJECT_ROOT / "data" / "Library_User_Login_data.csv"
@@ -36,20 +37,8 @@ def _save_borrowings(records):
 
 
 def _expire_borrowings(today=None):
-    today = today or date.today()
     records = _load_borrowings()
-    changed = False
-
-    for record in records:
-        if (
-            record.get("Status") == "Issued"
-            and date.fromisoformat(record["Expiry_Date"]) <= today
-        ):
-            record["Status"] = "Returned"
-            record["Return_Date"] = today.isoformat()
-            changed = True
-
-    if changed:
+    if Books_Due_Date.expire_borrowings(records, today):
         _save_borrowings(records)
 
     return records
@@ -95,7 +84,7 @@ def issue_book_record(user_id, isbn, issue_date=None):
     ):
         return False, "Book currently unavailable", None
 
-    expiry_date = issue_date + timedelta(days=7)
+    expiry_date = Books_Due_Date.calculate_due_date(issue_date)
     borrowing = {
         "User_ID": user_id,
         "Book_ISBN": isbn,
