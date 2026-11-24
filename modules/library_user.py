@@ -86,15 +86,9 @@ def libary_user_login():
 #---Menu---
 def libary_user_menu(user, fees):
     while True:
-
-        while True:
-            if f"Notifications: {fees['Notifications']} == YES":
-                if float(fees['Outstanding_Amount']) > 0:
-                    print(f"You have unpaid fees: CHF {fees['Outstanding_Amount']}.-")
-                    break
-                else:
-                    break
-
+        if fees['Notifications'] == YES:
+            if float(fees['Outstanding_Amount']) > 0:
+                print(f"You have unpaid fees: CHF {fees['Outstanding_Amount']}.-")
 
         print("What do you want to do", user["Username"], "?\n"
               "1. viewing account information\n2. viewing fees\n3. searching books\n"
