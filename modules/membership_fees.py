@@ -9,7 +9,7 @@ ANUAL_FEE = 50
 
 #---Functions for the Code---
 def update_membership_fees(fees):
-    today = date.today
+    today = date.today()
     registration_date = date.fromisoformat(fees["Account_Creation_Date"])
     last_update = date.fromisoformat(fees["Last_Update"])
     

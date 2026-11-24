@@ -87,11 +87,21 @@ def libary_user_login():
 def libary_user_menu(user, fees):
     #---Review of Fees---
     if membership_fees.update_membership_fees(fees):
-        membership_fees.calculate_discount(fees["Account_Creation_Date"])
-        membership_fees.calculating_anual_fee(fees["Account_Creation_Date"])
-        membership_fees.adding_current_anual_fee(fees["Outstanding_Amount"], fees["Anual_Fee"])
-        membership_fees.late_fee(fees["Outstanding_Amount"], fees["Anual_Fee"])
-        membership_fees.adding_current_late_fee(fees["Outstanding_Amount"], fees["Late_Fee"])
+        registration_date = date.fromisoformat(fees["Account_Creation_Date"])
+        outstanding_amount = float(fees["Outstanding_Amount"])
+
+        discount = membership_fees.calculate_discount(registration_date)
+        anual_fee = membership_fees.calculating_anual_fee(registration_date)
+        outstanding_amount = membership_fees.adding_current_anual_fee(outstanding_amount, anual_fee)
+        late_fee = membership_fees.late_fee(outstanding_amount, anual_fee)
+        outstanding_amount = membership_fees.adding_current_late_fee(outstanding_amount, late_fee)
+
+        user_data.update_user(CSV_PATH_FEES, FIELDNAMES_FEES, fees, "Discounts", discount)
+        user_data.update_user(CSV_PATH_FEES, FIELDNAMES_FEES, fees, "Anual_Fee", anual_fee)
+        user_data.update_user(CSV_PATH_FEES, FIELDNAMES_FEES, fees, "Late_Fee", late_fee)
+        user_data.update_user(CSV_PATH_FEES, FIELDNAMES_FEES, fees, "Outstanding_Amount", outstanding_amount)
+        user_data.update_user(CSV_PATH_FEES, FIELDNAMES_FEES, fees, "Last_Update", date.today())
+                                
 
     while True:
 
