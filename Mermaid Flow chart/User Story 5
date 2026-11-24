@@ -1,3 +1,4 @@
+``` mermaid 
 flowchart TD
 
     A([Start Issue Process])
@@ -32,6 +33,7 @@ flowchart TD
     Q --> R{7 Days Elapsed?}
 
     R -->|No| R
+```
     R -->|Yes| S[Revoke Access]
 
     S --> T[Mark Book as Returned]
