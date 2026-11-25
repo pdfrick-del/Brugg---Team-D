@@ -223,6 +223,8 @@ Then the system displays the message:No books available
  
 ### User Story 5 : Issue Books- Amreen
 
+As a registered library user, I want to issue an available book from the online library system. The system shall authenticate the user, verify the existence and availability of the selected book, create a borrowing record and provide clear confirmation or error notifications based on the outcome of the request.
+
 #### AC1: User Must Be Registered and Logged In
  Given the user wants to issue a book
  When the user logs in using valid credentials
