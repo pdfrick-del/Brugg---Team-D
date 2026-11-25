@@ -289,7 +289,7 @@ As a library user, I want to view my membership fees so that I know which I have
 - Then the system applies a discount to all upcoming membership fees, ensuring that each fee receives the discount only once.
 
   
-### User Story 5 : Rate Books- Amreen
+### User Story 7 : Rate Books- Amreen
 
 "As a library user, I want to rate books that I have read so that I can share my opinion and help other users choose books."
 
