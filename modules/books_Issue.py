@@ -1,13 +1,12 @@
 import csv
-from datetime import date
+from datetime import date, timedelta
 from pathlib import Path
-from modules import Books_Due_Date
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 USER_FILE = PROJECT_ROOT / "data" / "Library_User_Login_data.csv"
 CATALOG_FILE = PROJECT_ROOT / "data" / "fictional_books_catalog.csv"
 BORROWING_FILE = PROJECT_ROOT / "data" / "Book_Borrowing_records.csv"
-
+LEGACY_BORROWING_FILE = PROJECT_ROOT / "data" / "Books_Issued_Library_User.csv"
 BORROWING_FIELDS = [
     "User_ID",
     "Book_ISBN",
@@ -18,15 +17,21 @@ BORROWING_FIELDS = [
 ]
 
 
-def _read_csv(file_path):
-    with file_path.open("r", newline="", encoding="utf-8") as file:
-        return list(csv.DictReader(file))
+def _read_csv(file_path, missing_ok=False):
+    try:
+        with file_path.open("r", newline="", encoding="utf-8") as file:
+            return list(csv.DictReader(file))
+    except FileNotFoundError:
+        if missing_ok:
+            return []
+        raise
 
 
 def _load_borrowings():
-    if not BORROWING_FILE.exists():
-        return []
-    return _read_csv(BORROWING_FILE)
+    records = _read_csv(BORROWING_FILE, missing_ok=True)
+    if LEGACY_BORROWING_FILE != BORROWING_FILE:
+        records.extend(_read_csv(LEGACY_BORROWING_FILE, missing_ok=True))
+    return records
 
 
 def _save_borrowings(records):
@@ -37,37 +42,60 @@ def _save_borrowings(records):
 
 
 def _expire_borrowings(today=None):
+    today = today or date.today()
     records = _load_borrowings()
-    if Books_Due_Date.expire_borrowings(records, today):
-        _save_borrowings(records)
+    changed = False
 
+    for record in records:
+        if record.get("Status") != "Issued":
+            continue
+
+        expiry_date = date.fromisoformat(record["Expiry_Date"])
+        if expiry_date <= today:
+        
+            record["Status"] = "Returned"
+            record["Return_Date"] = expiry_date.isoformat()
+            changed = True
+
+    if changed:
+        _save_borrowings(records)
     return records
 
 
 def _find_book_by_isbn(isbn):
-    for book in _read_csv(CATALOG_FILE):
-        if book["ISBN_Number"] == isbn:
-            return book
-    return None
+    return next(
+        (
+            book
+            for book in _read_csv(CATALOG_FILE)
+            if book.get("ISBN_Number", "").strip() == isbn
+        ),
+        None,
+    )
 
 
 def _user_exists(user_id):
-    return any(user["UserID"] == user_id for user in _read_csv(USER_FILE))
+    return bool(user_id) and any(
+        user.get("UserID") == user_id for user in _read_csv(USER_FILE)
+    )
 
 
 def _find_matching_books(search_text):
-    search_text = search_text.casefold()
+    search_text = search_text.strip().casefold()
+    if not search_text:
+        return []
+
     return [
         book
         for book in _read_csv(CATALOG_FILE)
-        if search_text in book["Book_Name"].casefold()
-        or search_text in book["Author"].casefold()
-        or search_text in book["ISBN_Number"].casefold()
+        if any(
+            search_text in book.get(field, "").casefold()
+            for field in ("Book_Name", "Author", "ISBN_Number")
+        )
     ]
 
 
 def issue_book_record(user_id, isbn, issue_date=None):
-    """Create a seven-day borrowing record for a registered user and catalog book."""
+    """Issue a catalog book to a registered user for seven days."""
     if not _user_exists(user_id):
         return False, "User not found", None
 
@@ -76,15 +104,17 @@ def issue_book_record(user_id, isbn, issue_date=None):
         return False, "E-book not found", None
 
     issue_date = issue_date or date.today()
-    records = _expire_borrowings(issue_date)
+    if not isinstance(issue_date, date):
+        raise TypeError("issue_date must be a datetime.date")
 
+    records = _expire_borrowings(issue_date)
     if any(
         record.get("Book_ISBN") == isbn and record.get("Status") == "Issued"
         for record in records
     ):
         return False, "Book currently unavailable", None
 
-    expiry_date = Books_Due_Date.calculate_due_date(issue_date)
+    expiry_date = issue_date + timedelta(days=7)
     borrowing = {
         "User_ID": user_id,
         "Book_ISBN": isbn,
@@ -99,7 +129,7 @@ def issue_book_record(user_id, isbn, issue_date=None):
 
 
 def has_book_access(user_id, isbn, today=None):
-    """Return whether the user has an unexpired borrowing record for this book."""
+    """Return whether the user currently has access to a borrowed book."""
     records = _expire_borrowings(today)
     return any(
         record.get("User_ID") == user_id
@@ -114,7 +144,7 @@ def display_issued_books(user):
     user_records = [
         record
         for record in records
-        if record.get("User_ID") == user["UserID"]
+        if record.get("User_ID") == user.get("UserID")
         and record.get("Status") == "Issued"
     ]
 
@@ -134,8 +164,9 @@ def display_issued_books(user):
 
 
 def issue_book(user):
+    """Search the catalog and issue a selected book to a logged-in user."""
     user_id = user.get("UserID", "")
-    if not user_id or not _user_exists(user_id):
+    if not _user_exists(user_id):
         print("User not found")
         return
 
