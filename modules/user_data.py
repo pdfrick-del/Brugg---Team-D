@@ -3,10 +3,6 @@ import csv
 import getpass
 import string
 
-#---Errors---
-class BreakException(Exception):
-    pass
-
 #---Functions for the Code---
 
 def load_users(CSV_PATH):
