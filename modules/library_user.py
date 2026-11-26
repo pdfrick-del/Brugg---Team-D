@@ -1,6 +1,5 @@
 #---Imports for the Code---
 import getpass
-import csv
 from datetime import date
 from pathlib import Path
 from modules import book_lending, user_data, membership_fees
@@ -49,42 +48,45 @@ def libary_user_login():
             print("Incorrect login credentials; return to choice")
 
         elif choice == "2":
-            highest_id = max((int(user["UserID"][1:]) for user in users), default=0)
-            new_user_id = f"U{highest_id + 1:03d}"
+            while True:
+                highest_id = max((int(user["UserID"][1:]) for user in users), default=0)
+                new_user_id = f"U{highest_id + 1:03d}"
 
-            new_name = user_data.get_name()
-            new_user_name = user_data.get_username(users)
-            new_password = user_data.get_password()
-            new_email = user_data.get_email(users)
-            payment_option = user_data.get_payment_options()
+                new_name = user_data.get_name()
+                new_user_name = user_data.get_username(users)
+                new_password = user_data.get_password()
+                new_email = user_data.get_email(users)
+                payment_option = user_data.get_payment_options()
 
-            registration_date = date.today().isoformat()
+                registration_date = date.today().isoformat()
+                while True:
+                    users.append({
+                        "UserID": new_user_id,
+                        "Name": new_name,
+                        "Username": new_user_name,
+                        "Password": new_password,
+                        "Role": "Library User",
+                        "Email": new_email,
+                        "Payment_Options": payment_option
+                    })
 
-            users.append({
-                "UserID": new_user_id,
-                "Name": new_name,
-                "Username": new_user_name,
-                "Password": new_password,
-                "Role": "Library User",
-                "Email": new_email,
-                "Payment_Options": payment_option
-            })
+                    user_data.save_users(CSV_PATH_LOGIN, users, FIELDNAMES_LOGIN)
+                    
+                    fees.append({
+                        "UserID": new_user_id,
+                        "Account_Creation_Date": registration_date,
+                        "Anual_Fee": 50,
+                        "Late_Fee": 0,
+                        "Outstanding_Amount": 50,
+                        "Discounts": 0,
+                        "Notifications" : "NO",
+                        "Last_Update": registration_date
+                    })
 
-            user_data.save_users(CSV_PATH_LOGIN, users, FIELDNAMES_LOGIN)
-            
-            fees.append({
-                "UserID": new_user_id,
-                "Account_Creation_Date": registration_date,
-                "Anual_Fee": 50,
-                "Late_Fee": 0,
-                "Outstanding_Amount": 50,
-                "Discounts": 0,
-                "Notifications" : "NO",
-                "Last_Update": registration_date
-            })
-
-            user_data.save_users(CSV_PATH_FEES, fees, FIELDNAMES_FEES)
-            print("Your account has been created; return to Log in.")
+                    user_data.save_users(CSV_PATH_FEES, fees, FIELDNAMES_FEES)
+                    print("Your account has been created; return to Log in.")
+                    break
+                break
 
         elif choice == "3":
             print("Please contact your admin.")

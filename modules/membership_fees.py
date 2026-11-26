@@ -1,7 +1,6 @@
 #---Imports for the Code---
 from datetime import date
 from pathlib import Path
-from modules import user_data
 
 #---Variables for the Code---
 CSV_PATH_FEES = Path(__file__).resolve().parent.parent / "data" / "Library_User_Fees_data.csv"
