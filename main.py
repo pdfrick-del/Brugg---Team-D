@@ -1,27 +1,44 @@
-#---Imports for the Code---
+# ---Imports---
 from modules import library_user, librarian
 
-#---User Login---
-while True:
-    print("Are you a library user or a librarian? Please type in 1 or 2 based on your role.")
-    print("1. library user")
-    print("2. librarian")
 
-    role = " "
+# ---User Login---
+def main():
+    """Control the main program flow."""
+    while True:
+        try:
+            while True:
+                print(
+                    "Press CTRL + C any time to return to the main menu.\n"
+                    "Are you a library user or a librarian?\n"
+                    "Please type in 1 or 2 based on your role.\n"
+                    "1. library user\n"
+                    "2. librarian"
+                )
 
-    while role not in ("1", "2"):
-        role = input("Choose 1 or 2: ")
-        if role != "1" and role != "2":
-            print("Error; return to user role")
+                role = input("Choose 1 or 2: ").strip()
 
-    if role == "1":
-        user, fees = library_user.libary_user_login()
+                if role in ("1", "2"):
+                    break
 
-        if user is not None: 
-            library_user.libary_user_menu(user, fees)
+                print("Error; return to user role")
 
-    if role == "2":
-        user = librarian.libarian_login()
+            if role == "1":
+                user, fees = library_user.libary_user_login()
 
-        if user is not None:
-            librarian.libarian_menu(user)
+                if user is not None:
+                    library_user.libary_user_menu(user, fees)
+
+            elif role == "2":
+                user = librarian.libarian_login()
+
+                if user is not None:
+                    librarian.libarian_menu(user)
+
+        except KeyboardInterrupt:
+            print("\nOperation cancelled. Return to main menu.")
+
+
+# ---Execute flow---
+if __name__ == "__main__":
+    main()

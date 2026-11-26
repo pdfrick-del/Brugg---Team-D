@@ -223,6 +223,8 @@ Then the system displays the message:No books available
  
 ### User Story 5 : Issue Books- Amreen
 
+As a registered library user, I want to issue an available book from the online library system. The system shall authenticate the user, verify the existence and availability of the selected book, create a borrowing record and provide clear confirmation or error notifications based on the outcome of the request.
+
 #### AC1: User Must Be Registered and Logged In
  Given the user wants to issue a book
  When the user logs in using valid credentials
@@ -247,28 +249,12 @@ Then the system displays the message:No books available
  Given the book has been issued successfully
  When the issue process is completed
  Then the system creates a borrowing record containing:
-
 User ID
 Book ISBN
 Issue Date
 Expiry Date (7 days from the issue date)
 
-#### AC6: Grant Book Access for 7 Days
- Given the book has been issued successfully
- When the borrowing record is created
- Then the system grants the user access to read and download the book for 7 days from the issue date.
-
-#### AC7: Automatic Return After 7 Days
- Given an book has reached its expiry date
- When 7 days have elapsed since the issue date
- Then the system automatically revokes access to the book and marks it as returned.
-
-#### AC8: Display Due Date
- Given the book has been issued successfully
- When the issuing process is completed
- Then the system displays the issue date and the due date (7 days later) to the user.
-
-#### AC9: User or Book Not Found
+#### AC6: User or Book Not Found
  Given the user initiates an book issue request
  When the user account or book does not exist
  Then the system rejects the request and displays one of the following messages:
@@ -304,6 +290,7 @@ As a library user, I want to view my membership fees so that I know which I have
 - When the program starts and detects that a library user has an account for at least 5 years.
 - Then the system applies a discount to all upcoming membership fees, ensuring that each fee receives the discount only once.
 
+<<<<<<< HEAD
 ### User Story 7: Rate Books
 
 As a library user, I want to rate books that I have read so that I can share my opinion and help other users choose books.
@@ -345,6 +332,66 @@ As a library user, I want to rate books that I have read so that I can share my 
 #### AC8: Rating Updates Statistics
 - Given I submit or update a rating.
 - Then the book's average and rating count are recalculated from saved ratings.
+=======
+  
+### User Story 7 : Rate Books- Amreen
+
+"As a library user, I want to rate books that I have read so that I can share my opinion and help other users choose books."
+
+### Acceptance Criteria
+### AC1: Rate a Borrowed Book
+
+Given I am a logged-in library user
+ And I have borrowed and read a book
+ When I navigate to the book details page
+ Then I should see an option to rate the book using a 1–5 star rating system.
+
+### AC2: Submit a Rating
+
+Given I am viewing a book's details page
+ When I select a rating between 1 and 5 stars and click "Submit"
+ Then my rating should be saved successfully
+ And a confirmation message should be displayed.
+
+### AC3: One Rating per User per Book
+
+Given I have already rated a book
+ When I attempt to rate the same book again
+ Then the system should update my existing rating instead of creating a duplicate rating.
+
+### AC4: Display Average Rating
+
+Given a book has received ratings from users
+ When any user views the book details page
+ Then the average rating should be displayed
+ And the total number of ratings should be shown.
+
+### AC5: Restrict Ratings to Eligible Users
+
+Given I have never borrowed a particular book
+ When I view its details page
+ Then I should not be allowed to submit a rating
+ And the system should display a message indicating that only users who have borrowed the book can rate it.
+
+### AC6: Validate Rating Value
+
+Given I am submitting a rating
+ When the rating value is less than 1 or greater than 5
+ Then the system should reject the submission
+ And display an appropriate validation message.
+
+### AC7: View Personal Rating
+
+Given I have previously rated a book
+ When I return to the book details page
+ Then my submitted rating should be visible to me.
+
+### AC8: Rating Updates Statistics
+
+Given a new rating is submitted or an existing rating is updated
+ When the action is successfully completed
+ Then the book's average rating should be recalculated automatically.
+>>>>>>> ecedd29418f26052ee4f4b03b9862d4a5012ca26
 
 ## Program Structure 🏛️
 

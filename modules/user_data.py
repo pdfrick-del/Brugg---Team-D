@@ -4,6 +4,7 @@ import getpass
 import string
 
 #---Functions for the Code---
+
 def load_users(CSV_PATH):
     with open(CSV_PATH, "r", newline="", encoding="utf-8") as file:
         return list(csv.DictReader(file))
