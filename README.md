@@ -290,6 +290,49 @@ As a library user, I want to view my membership fees so that I know which I have
 - When the program starts and detects that a library user has an account for at least 5 years.
 - Then the system applies a discount to all upcoming membership fees, ensuring that each fee receives the discount only once.
 
+<<<<<<< HEAD
+### User Story 7: Rate Books
+
+As a library user, I want to rate books that I have read so that I can share my opinion and help other users choose books.
+
+#### AC1: Rate a Borrowed Book
+- Given I am logged in and have borrowed a book.
+- When I view its details.
+- Then I can submit a rating from 1 to 5 stars.
+
+#### AC2: Submit a Rating
+- Given I am viewing a book's details.
+- When I submit a rating from 1 to 5.
+- Then the rating is saved and a confirmation is displayed.
+
+#### AC3: One Rating per User per Book
+- Given I have already rated a book.
+- When I submit another rating for it.
+- Then my existing rating is updated rather than duplicated.
+
+#### AC4: Display Average Rating
+- Given a book has ratings.
+- When a user views its details.
+- Then its average rating and total number of ratings are displayed.
+
+#### AC5: Restrict Ratings to Eligible Users
+- Given I have never borrowed a book.
+- When I view its details.
+- Then I cannot submit a rating and am told that only users who borrowed it can rate it.
+
+#### AC6: Validate Rating Value
+- Given I submit a rating below 1 or above 5, or a non-integer value.
+- Then the submission is rejected with a validation message.
+
+#### AC7: View Personal Rating
+- Given I have rated a book.
+- When I return to its details.
+- Then my rating is displayed.
+
+#### AC8: Rating Updates Statistics
+- Given I submit or update a rating.
+- Then the book's average and rating count are recalculated from saved ratings.
+=======
   
 ### User Story 7 : Rate Books- Amreen
 
@@ -348,6 +391,7 @@ Given I have previously rated a book
 Given a new rating is submitted or an existing rating is updated
  When the action is successfully completed
  Then the book's average rating should be recalculated automatically.
+>>>>>>> ecedd29418f26052ee4f4b03b9862d4a5012ca26
 
 ## Program Structure 🏛️
 
@@ -356,5 +400,4 @@ Given a new rating is submitted or an existing rating is updated
 We used Mermaid to create ours flowcharts for our decision and control flow logic and used ChatGPT to help us learn the commands in Mermaid. We uploaded a Cheatsheet ChatGPT created for us to use Mermaid: Mermaid Cheat Sheet.md
 
 The flowchart can be viewed in the file: Flowchart.md.
-
 

@@ -2,7 +2,7 @@
 import getpass
 from datetime import date
 from pathlib import Path
-from modules import book_lending, user_data, membership_fees
+from modules import Books_Issue, Books_Rating, user_data, membership_fees
 
 #---Variables for the Code---
 CSV_PATH_LOGIN = Path(__file__).resolve().parent.parent / "data" / "Library_User_Login_data.csv"
@@ -124,12 +124,13 @@ def libary_user_menu(user, fees):
 
         print("What do you want to do", user["Username"], "?\n"
               "1. viewing account information\n2. viewing fees\n3. searching books\n"
-              "4. Issued Books\n5. Issue a book\n6. Log out")
+              "4. Issued Books\n5. Issue a book\n6. Log out\n"
+              "7. View book details and rate a book")
     
         while True:
-            choice_options = input("Choose 1, 2, 3, 4, 5 or 6: ")
+            choice_options = input("Choose 1, 2, 3, 4, 5, 6 or 7: ")
 
-            if choice_options in ("1", "2", "3", "4", "5", "6"):
+            if choice_options in ("1", "2", "3", "4", "5", "6", "7"):
                 break
 
             print("Error; return to options.")
@@ -217,10 +218,13 @@ def libary_user_menu(user, fees):
             break
 
         if choice_options ==  "4":
-            book_lending.display_issued_books(user)
+            Books_Issue.display_issued_books(user)
 
         if choice_options == "5":
-            book_lending.issue_book(user)
+            Books_Issue.issue_book(user)
+
+        if choice_options == "7":
+            Books_Rating.rate_book(user)
 
         if choice_options == "6":
             print("logging out; return to choice")

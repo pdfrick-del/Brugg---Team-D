@@ -4,6 +4,8 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 CATALOG_FILE = PROJECT_ROOT / "data" / "fictional_books_catalog.csv"
 
+
+
 def add_book():
 
     book_name = input("Book Name: ")
@@ -167,20 +169,41 @@ def delete_book():
 def view_catalog():
 
     with open(CATALOG_FILE, "r", newline="", encoding="utf-8") as file:
-
         reader = csv.DictReader(file)
+        columns = [
+            ("Sr_No", "Serial No"),
+            ("Book_Name", "Book Name"),
+            ("Author", "Author"),
+            ("Genre", "Genre"),
+            ("PageCount_DurationMinutes", "Pages/Duration"),
+            ("Publication_Year", "Publication Year"),
+            ("ISBN_Number", "ISBN Number"),
+            ("Book_Type", "Book Type"),
+        ]
+        books = list(reader)
 
-        for book in reader:
+    headers = [label for _, label in columns]
+    rows = [
+        [book.get(field) or "" for field, _ in columns]
+        for book in books
+    ]
+    widths = [
+        max(len(header), *(len(row[index]) for row in rows))
+        for index, header in enumerate(headers)
+    ]
+    border = "+" + "+".join("-" * (width + 2) for width in widths) + "+"
 
-            print("\n---------------------------")
-            print("Serial No:", book["Sr_No"])
-            print("Book Name:", book["Book_Name"])
-            print("Author:", book["Author"])
-            print("Genre:", book["Genre"])
-            print("Pages/Duration:", book["PageCount_DurationMinutes"])
-            print("Publication Year:", book["Publication_Year"])
-            print("ISBN Number:", book["ISBN_Number"])
-            print("Book Type:", book["Book_Type"])
+    def format_row(values):
+        return "| " + " | ".join(
+            value.ljust(width) for value, width in zip(values, widths)
+        ) + " |"
+
+    print(border)
+    print(format_row(headers))
+    print(border)
+    for row in rows:
+        print(format_row(row))
+    print(border)
 
 
 # Main Menu
