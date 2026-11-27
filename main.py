@@ -24,16 +24,16 @@ def main():
                 print("Error; return to user role")
 
             if role == "1":
-                user, fees = library_user.libary_user_login()
+                user, fees = library_user.library_user_login()
 
                 if user is not None:
-                    library_user.libary_user_menu(user, fees)
+                    library_user.library_user_menu(user, fees)
 
             elif role == "2":
-                user = librarian.libarian_login()
+                user = librarian.librarian_login()
 
                 if user is not None:
-                    librarian.libarian_menu(user)
+                    librarian.librarian_menu(user)
 
         except KeyboardInterrupt:
             print("\nOperation cancelled. Return to main menu.")
