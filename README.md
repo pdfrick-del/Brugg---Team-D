@@ -1,4 +1,4 @@
-# Brugg - Team - D - Library Management System 📚
+# Brugg - Team - D - Digital Library Management System 📚
 
 ## Authors 👥
 
@@ -7,7 +7,7 @@
 
 ## Statement of Integrity 📜
 
-We hereby commit
+We hereby commit:
 
 - To clearly document the use of generative AI and other tools
 - To divide the work fairly and contribute equally to the project
@@ -42,15 +42,21 @@ We hereby commit
 ## Analysis 📝 
 
 ### Problem
+Managing and using a digital library without a centralized system can be time-consuming and can lead to errors and inaccurate information.
+
+Library users need a centralized system where they can view their personal data, keep track of their borrowed books and membership fees, and search for books to borrow.
+
+Librarians require a centralized system where they can view and manage the library's book inventory, add new books, update book information and remove books.
 
 ### Scenario 
+The Digital Library Management System addresses these problems by providing a centralized platform. Library users can select their role, register or log in, and manage their account information, view membership fees and borrow books. Librarians can select their role and log in to manage and maintain the library's book inventory.
 
 ### User Roles
 
 | Role | Description |
 |---|---|
-|Librarian| |
-|Library user| |
+|Librarian|An employee of the library who is responsible for managing and maintaining the library's book inventory.|
+|Library user|A registered member of the library who can manage their personal information, view their membership fees, and borrow and rate books.|
 
 ### User Stories 📖
 
