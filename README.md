@@ -421,12 +421,13 @@ The application validates user input to ensure data integrity and a smooth user 
 
 - **Role Selection:** When the user enters 1 or 2, the system accepts the role selection; otherwise, it displays an error message and prompts the user to try again:
 
-                role = input("Choose 1 or 2: ").strip()
+```python
+role = input("Choose 1 or 2: ").strip()
 
-                if role in ("1", "2"):
-                    break
+if role in ("1", "2"):
+  break
 
-                print("Error; return to user role")
-
+print("Error; return to user role")
+```
 
 
