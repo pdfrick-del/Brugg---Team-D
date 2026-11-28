@@ -399,3 +399,34 @@ Given a new rating is submitted or an existing rating is updated
  When the action is successfully completed
  Then the book's average rating should be recalculated automatically.
 >>>>>>> ecedd29418f26052ee4f4b03b9862d4a5012ca26
+
+## Project Requirements ✅
+
+### 1. Interactive App (Console Input)
+The application interacts with the user via the console. Users can:
+
+- Choose their role
+- Register a new library user account
+- Log in using their credentials
+- View and manage information based on their role
+- View membership fees and manage fee notifications
+- Search for, borrow, and rate books
+- Access role-specific book management features
+
+### 2. Data Validation
+
+The application validates user input to ensure data integrity and a smooth user experience. Data validation is implemented in the main program and the corresponding modules. The following examples demonstrate how user input is validated:
+
+#### Main Program (`main.py`)
+
+- **Role Selection:** When the user enters 1 or 2, the system accepts the role selection; otherwise, it displays an error message and prompts the user to try again:
+
+                role = input("Choose 1 or 2: ").strip()
+
+                if role in ("1", "2"):
+                    break
+
+                print("Error; return to user role")
+
+
+
