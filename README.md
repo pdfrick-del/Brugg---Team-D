@@ -1,42 +1,43 @@
-# Brugg - Team - D - Library Book Sorting System 📚
+# Brugg - Team - D - Library Management System 📚
 
 ## Authors 👥
 
 - Amreen Anis Ahmed Khan: amreenanisahmed.khan@students.fhnw.ch
 - Patrick Frick: patrick.frick@students.fhnw.ch
 
-## Project Objectives According to Template 📄
-
-This project is intended to:
-
-- Practice the complete process from problem analysis to implementation
-- Apply basic Python programming concepts learned in the Programming Foundations module
-- Demonstrate the use of console interaction, data validation, and file processing
-- Produce clean, well-structured, and documented code
-- Prepare students for teamwork and documentation in later modules
-
 ## Statement of Integrity 📜
 
-We hereby declare
+We hereby commit
 
-- To clearly document the use of generative AI
+- To clearly document the use of generative AI and other tools
 - To divide the work fairly and contribute equally to the project
-- Cite external sources when necessary
+- To cite external sources when necessary
 
-## Information About the Database 💾
+## Declaration of Used Aids 🛠️
 
-In this project a database will be used:
-
-- This database is fictive
-- It was created with ChatGPT
--  It is considered a tool to demonstrate our program
+| Aid | Purpose | Area |
+|---|---|---|
+|ChatGPT|Explanation of programming concepts and features|Learning and development to apply knowledge in the project|
+|ChatGPT|Debugging and discovering potential errors|Source code|
+|ChatGPT|Feedback and suggestions for improvement|Source code review|
+|ChatGPT|Generating fictional datasets|CSV data files|
+|ChatGPT|Linguistic, grammatical and structural review|Project documentation|
+|ChatGPT|Assistance with the use of Mermaid|Visualizing program flow logic|
 
 ## Tools and Programming Languages 🛠️
 
-- Python
-- Git and Github
-- Mermaid
-- ChatGPT
+| Tool / Technology | Purpose |
+|---|---|
+|Python|Programming language|
+|Visual Studio Code|Development environment|
+|Git|Version control|
+|GitHub|Repository hosting and collaboration|
+|Mermaid|Visualization of program flow logic|
+|Markdown|Project documentation|
+|CSV|Data storage and file processing|
+|pycodestyle |Checking compliance with PEP 8|
+|PowerPoint|Project presentation|
+|Canva|Sourcing animations and visuals for the PowerPoint presentation|
 
 ## Analysis 📝 
 
@@ -392,12 +393,3 @@ Given a new rating is submitted or an existing rating is updated
  When the action is successfully completed
  Then the book's average rating should be recalculated automatically.
 >>>>>>> ecedd29418f26052ee4f4b03b9862d4a5012ca26
-
-## Program Structure 🏛️
-
-### Decision and Control Flow Logic
-
-We used Mermaid to create ours flowcharts for our decision and control flow logic and used ChatGPT to help us learn the commands in Mermaid. We uploaded a Cheatsheet ChatGPT created for us to use Mermaid: Mermaid Cheat Sheet.md
-
-The flowchart can be viewed in the file: Flowchart.md.
-
